@@ -7,17 +7,19 @@ import type { MiddlewareHandler } from "astro";
  * @returns {Promise<void>} - A promise that resolves when the middleware has finished processing.
  */
 export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect, url }, next) => {
+    // Get the value of the 'token' cookie
     const token = cookies.get('token');
 
-    console.log('token', token)
-
+    // If a valid token exists and the current URL is '/', redirect to '/dashboard'
     if (token != null && token.value != null && url.pathname === '/') {
         return redirect('/dashboard')
     }
 
+    // If no token or an invalid token exists, redirect to '/?error=unauthorized'
     if (token == null || token.value == null) {
         return redirect('/?error=unauthorized')
     }
 
+    // Call the next middleware function in the chain
     return next();
 };
