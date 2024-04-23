@@ -18,7 +18,6 @@ export const GET = async ({url, redirect, cookies}: APIContext) => {
 
     const isValid = await compare(password, user.token)
 
-
     if (!isValid) {
         return redirect('/?error=invalid-password')
     }
