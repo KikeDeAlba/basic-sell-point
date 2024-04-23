@@ -6,7 +6,7 @@ import type { MiddlewareHandler } from "astro";
  * @param {MiddlewareNextFunction} next - The next function to be called in the middleware chain.
  * @returns {Promise<void>} - A promise that resolves when the middleware has finished processing.
  */
-export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect, url }, next) => {
+export const onRequest: MiddlewareHandler = async ({ cookies, redirect, url }, next) => {
     // Get the value of the 'token' cookie
     const token = cookies.get('token');
 
