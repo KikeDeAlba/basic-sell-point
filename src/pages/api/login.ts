@@ -7,8 +7,6 @@ import { type APIContext } from "astro";
 export const GET = async ({url, redirect, cookies}: APIContext) => {
     const {email, password} = Object.fromEntries(url.searchParams)
 
-    console.log(email, password)
-
     const [user] = await db.select({
         token: users.token
     }).from(users).where(eq(users.email, email))
