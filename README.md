@@ -1,54 +1,42 @@
-# Astro Starter Kit: Basics
+# Sell-Point Project
 
-```sh
-npm create astro@latest -- --template basics
-```
+This is a basic sell-point project that allows you to manage products and sales.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Product management: Add, update, and delete products.
+- Sales management: Record and track sales.
+- Inventory management: Keep track of product stock levels.
+- User authentication: Secure access to the sell-point system.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Installation
 
-## 🚀 Project Structure
+1. Clone the repository: `git clone https://github.com/KikeDeAlba/sell-point-uas-project.git`
+2. Install the required dependencies: `npm install`
+3. Set up the database: [instructions here]
+4. Configure the environment variables: [instructions here]
+5. Start the application: `npm start`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Usage
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+1. Access the sell-point system by visiting [URL].
+2. Sign in with your credentials or create a new account.
+3. Use the navigation menu to manage products, record sales, and view reports.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Contributing
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Make your changes and commit them: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Submit a pull request.
 
-## 🧞 Commands
+## License
 
-All commands are run from the root of the project, from a terminal:
+This project is licensed under the [MIT License](LICENSE).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Contact
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If you have any questions or suggestions, feel free to reach out to us at [email address].
