@@ -16,7 +16,7 @@ export const users = mysqlTable('users', {
     }).notNull().unique(),
     token: varchar('token', {
         length: 255
-    }).notNull().unique(),
+    }).notNull(),
     age: int('age').notNull(),
     role: mysqlEnum('role', ['admin', 'worker']).notNull().default('worker'),
     profilePicture: varchar('profile_picture', {

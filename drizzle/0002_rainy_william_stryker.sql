@@ -1,0 +1,1 @@
+ALTER TABLE `users` DROP INDEX `users_token_unique`;
