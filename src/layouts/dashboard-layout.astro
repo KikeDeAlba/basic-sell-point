@@ -1,0 +1,18 @@
+---
+import Layout from "./Layout.astro";
+import Aside from "@/components/dashboard/aside.astro";
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+    <div class="flex">
+        <Aside />
+
+        <slot/>
+    </div>
+</Layout>
