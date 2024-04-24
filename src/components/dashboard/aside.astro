@@ -1,20 +1,42 @@
-<aside>
+---
+import { db } from "@/services/mysql"
+import { users } from "db/schema"
+import { eq } from "drizzle-orm"
+import LiElement from "./aside-utils/li-element.astro"
+
+const token = Astro.cookies.get("token")
+
+if (token == null || token.value == null) {
+    Astro.redirect("/login")
+    return
+}
+
+const [user] = await db.select({
+    name: users.firstName
+})
+.from(users)
+.where(
+    eq(users.token, token.value)
+)
+---
+
+<aside class="h-screen overflow-hidden border-r border-r-white/20 px-5 py-4">
+    <h1
+        class="text-2xl font-bold text-white mb-4"
+    >
+        Hello {user.name}!
+    </h1>
+
     <nav>
-        <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/dashboard/settings">Settings</a></li>
-            <li><a href="/dashboard/profile">Profile</a></li>
-            <li>
-                <a href="/dashboard/inventory">Inventory</a>
-            </li>
-
-            <li>
-                <a href="/dashboard/reports">Reports</a>
-            </li>
-
-            <li>
-                <a href="/dashboard/sell-point">Sell Point</a>
-            </li>
+        <ul class="flex flex-col gap-1">
+            <LiElement href="/dashboard">
+                Home
+            </LiElement>
+            <LiElement href="/dashboard/sell-point">Sell Point</LiElement>
+            <LiElement href="/dashboard/inventory">Inventory</LiElement>
+            <LiElement href="/dashboard/reports">Reports</LiElement>
+            <LiElement href="/dashboard/profile">Profile</LiElement>
+            <LiElement href="/dashboard/settings">Settings</LiElement>
         </ul>
     </nav>
 </aside>

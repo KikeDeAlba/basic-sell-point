@@ -10,9 +10,13 @@ const { title } = Astro.props;
 ---
 
 <Layout title={title}>
-    <div class="flex">
+    <div class="flex h-screen w-screen overflow-hidden">
         <Aside />
 
-        <slot/>
+        <div
+            class="p-8 h-full flex-1 overflow-y-auto"
+        >
+            <slot />
+        </div>
     </div>
 </Layout>
