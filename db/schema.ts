@@ -1,6 +1,5 @@
 import { int, mysqlEnum, mysqlTable, datetime, float, varchar, binary } from 'drizzle-orm/mysql-core';
 import { sql } from 'drizzle-orm';
-import { db } from '../src/services/mysql';
 
 export const users = mysqlTable('users', {
     id: binary('id', {
