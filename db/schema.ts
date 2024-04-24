@@ -18,7 +18,10 @@ export const users = mysqlTable('users', {
         length: 255
     }).notNull().unique(),
     age: int('age').notNull(),
-    role: mysqlEnum('role', ['admin', 'worker']).notNull().default('worker')
+    role: mysqlEnum('role', ['admin', 'worker']).notNull().default('worker'),
+    profilePicture: varchar('profile_picture', {
+        length: 255
+    }),
 })
 
 export const clients = mysqlTable('clients', {

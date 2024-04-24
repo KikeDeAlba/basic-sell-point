@@ -8,6 +8,13 @@
       "when": 1713857840306,
       "tag": "0000_broad_phantom_reporter",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713919000135,
+      "tag": "0001_little_hobgoblin",
+      "breakpoints": true
     }
   ]
 }
