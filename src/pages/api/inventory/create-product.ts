@@ -3,7 +3,7 @@ import type { APIContext } from "astro";
 import { z } from "astro/zod";
 import { products } from "db/schema";
 
-const ProductSchema = z.object({
+export const ProductSchema = z.object({
     name: z.coerce.string(),
     description: z.coerce.string(),
     price: z.coerce.number(),

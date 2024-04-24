@@ -10,9 +10,8 @@ const { defaultValues } = Astro.props;
 const title = defaultValues != null ? "Edit Product" : "Create New Product";
 const action =
     defaultValues != null
-        ? "/api/inventory/update-product"
+        ? `/api/inventory/update-product/${defaultValues.id}`
         : "/api/inventory/create-product";
-const method = defaultValues != null ? "PUT" : "POST";
 const paragraphValue =
     defaultValues != null
         ? "Update the form to edit the product."
@@ -55,7 +54,7 @@ const paragraphValue =
         </p>
     </div>
     <div class="p-6">
-        <form action={action} method={method} class="grid gap-4">
+        <form action={action} method="post" class="grid gap-4">
             <div class="grid gap-2">
                 <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

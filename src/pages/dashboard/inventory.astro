@@ -43,12 +43,19 @@ const currentProducts = await db.select().from(products);
                                     >
                                         Edit
                                     </a>
-                                    <a
-                                        href={`/dashboard/inventory/delete/${product.id}`}
-                                        class="text-red-500"
+
+                                    <form
+                                        action={`/api/inventory/delete-product/${product.id}`}
+                                        method="post"
+                                        class="inline-block"
                                     >
-                                        Delete
-                                    </a>
+                                        <button
+                                            type="submit"
+                                            class="text-red-500"
+                                        >
+                                            Delete
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         ))
