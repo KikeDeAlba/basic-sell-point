@@ -1,21 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LoginForm from "../components/login-form.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<form action="/api/login">
-			<label>
-				<span>email</span>
-				<input type="email" name="email" />
-			</label>
-
-			<label>
-				<span>password</span>
-				<input type="password" name="password" />
-			</label>
-
-			<button type="submit">Login</button>
-		</form>
+<Layout title="Login">
+	<main class="flex justify-center items-center h-screen">
+		<LoginForm />
 	</main>
 </Layout>

@@ -1,0 +1,77 @@
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/HHyBARpOPca
+-->
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Inter", sans-serif;
+        --font-sans: "Inter";
+    }
+</style>
+<style>
+    body {
+        font-family: "Inter", sans-serif;
+        --font-sans: "Inter";
+    }
+</style>
+<form
+    action="/api/auth/login"
+    class="rounded-lg border border-white/20 bg-card text-card-foreground shadow-sm mx-auto w-full max-w-sm"
+    data-v0-t="card"
+>
+    <div class="p-6 flex flex-col items-center space-y-1">
+        <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">
+            Welcome Back
+        </h3>
+        <p class="text-sm text-muted-foreground text-center">
+            Enter your email to login to your account
+        </p>
+    </div>
+    <div class="p-6 space-y-4">
+        <div class="space-y-2 w-full max-w-sm">
+            <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="email"
+            >
+                Email
+            </label>
+            <input
+                class="flex h-10 rounded-md border border-white/20 outline-none border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+                placeholder="m@example.com"
+                required
+                type="email"
+                name="email"
+            />
+        </div>
+        <div class="space-y-2 w-full max-w-sm">
+            <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="password"
+            >
+                Password
+            </label>
+            <input
+                class="flex h-10 rounded-md border border-white/20 outline-none border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+                id="password"
+                required='type="password"'
+                name="password"
+                placeholder="********"
+            />
+        </div>
+        <button
+            class="inline-flex bg-white/20 hover:bg-white/30 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+            type="submit"
+        >
+            Login
+        </button>
+    </div>
+    <!-- <div class="items-center p-6 flex flex-col space-y-2 text-white/50">
+        <a class="w-full" href="#"> Create an account </a>
+        <a class="w-full underline" href="#"> Forgot your password? </a>
+    </div> -->
+</form>
