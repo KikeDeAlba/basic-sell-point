@@ -1,14 +1,24 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
 import AddProductForm from "@/components/dashboard/inventory/add-product-form.astro";
+import { products } from "db/schema";
+
+interface Props {
+    editMode?: boolean;
+    defaultValues?: typeof products.$inferSelect;
+}
+
+const { editMode = false, defaultValues } = Astro.props;
+
+const title = editMode ? "Edit product" : "Add product";
 ---
 
-<DashboardLayout title="Add product">
+<DashboardLayout title={title}>
     <main>
         <h1
             class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-9"
         >
-            Add product
+            {title}
         </h1>
         <!-- <form action="/api/inventory/create-product" method="post">
             <label>
@@ -32,6 +42,6 @@ import AddProductForm from "@/components/dashboard/inventory/add-product-form.as
             </label>
         </form> -->
 
-        <AddProductForm />
+        <AddProductForm defaultValues={defaultValues} />
     </main>
 </DashboardLayout>

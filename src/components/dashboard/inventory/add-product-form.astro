@@ -1,3 +1,24 @@
+---
+import type { products } from "db/schema";
+
+interface Props {
+    defaultValues?: typeof products.$inferSelect;
+}
+
+const { defaultValues } = Astro.props;
+
+const title = defaultValues != null ? "Edit Product" : "Create New Product";
+const action =
+    defaultValues != null
+        ? "/api/inventory/update-product"
+        : "/api/inventory/create-product";
+const method = defaultValues != null ? "PUT" : "POST";
+const paragraphValue =
+    defaultValues != null
+        ? "Update the form to edit the product."
+        : "Fill out the form to add a new product.";
+---
+
 <!--
 // v0 by Vercel.
 // https://v0.dev/t/6UrpFPSyvL2
@@ -27,18 +48,14 @@
         <h3
             class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
         >
-            Create New Product
+            {title}
         </h3>
         <p class="text-sm text-muted-foreground">
-            Fill out the form to add a new product.
+            {paragraphValue}
         </p>
     </div>
     <div class="p-6">
-        <form
-            action="/api/inventory/create-product"
-            method="post"
-            class="grid gap-4"
-        >
+        <form action={action} method={method} class="grid gap-4">
             <div class="grid gap-2">
                 <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -51,6 +68,7 @@
                     id="name"
                     placeholder="Enter product name"
                     name="name"
+                    value={defaultValues?.name}
                 />
             </div>
             <div class="grid gap-2">
@@ -64,6 +82,7 @@
                     class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     id="description"
                     name="description"
+                    value={defaultValues?.description}
                     placeholder="Enter product description"></textarea>
             </div>
             <div class="grid grid-cols-2 gap-4">
@@ -80,6 +99,7 @@
                         placeholder="Enter stock quantity"
                         type="number"
                         name="stock"
+                        value={defaultValues?.stock}
                     />
                 </div>
                 <div class="grid gap-2">
@@ -95,6 +115,7 @@
                         placeholder="Enter price"
                         type="number"
                         name="price"
+                        value={defaultValues?.price}
                     />
                 </div>
             </div>

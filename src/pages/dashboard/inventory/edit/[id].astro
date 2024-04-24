@@ -1,0 +1,22 @@
+---
+import { db } from "@/services/mysql";
+import Add from "../add.astro";
+import { products } from "db/schema";
+import { eq } from "drizzle-orm";
+
+const { id } = Astro.params;
+
+if (id == null) {
+    return {
+        status: 400,
+        body: "Missing 'id' parameter",
+    };
+}
+
+const [currentProduct] = await db
+    .select()
+    .from(products)
+    .where(eq(products.id, Number(id)));
+---
+
+<Add defaultValues={currentProduct} />
