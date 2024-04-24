@@ -1,5 +1,5 @@
-import { db } from "../../services/mysql";
-import { users } from "../../../db/schema";
+import { db } from "../../../services/mysql";
+import { users } from "../../../../db/schema";
 import { eq } from "drizzle-orm";
 import {compare} from 'bcrypt'
 import { type APIContext } from "astro";
