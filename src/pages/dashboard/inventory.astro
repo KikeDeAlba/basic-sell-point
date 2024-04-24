@@ -1,0 +1,60 @@
+---
+import DashboardLayout from "@/layouts/dashboard-layout.astro";
+import { db } from "@/services/mysql";
+import { products } from "db/schema";
+
+const currentProducts = await db.select().from(products);
+---
+
+<DashboardLayout title="Inventory">
+    <main class="flex flex-col h-full overflow-hidden">
+        <header class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold text-white/80">Inventory</h1>
+
+            <a
+                href="/dashboard/inventory/add"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Add Product
+            </a>
+        </header>
+
+        <section class="h-full overflow-y-auto">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="text-left">Name</th>
+                        <th class="text-left">Price</th>
+                        <th class="text-left">Stock</th>
+                        <th class="text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        currentProducts.map((product) => (
+                            <tr>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
+                                <td>{product.stock}</td>
+                                <td>
+                                    <a
+                                        href={`/dashboard/inventory/edit/${product.id}`}
+                                        class="text-blue-500"
+                                    >
+                                        Edit
+                                    </a>
+                                    <a
+                                        href={`/dashboard/inventory/delete/${product.id}`}
+                                        class="text-red-500"
+                                    >
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </section>
+    </main>
+</DashboardLayout>
