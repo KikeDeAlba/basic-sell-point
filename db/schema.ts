@@ -2,9 +2,9 @@ import { int, mysqlEnum, mysqlTable, datetime, float, varchar, binary } from 'dr
 import { sql } from 'drizzle-orm';
 
 export const users = mysqlTable('users', {
-    id: binary('id', {
+    id: varchar('id', {
         length: 36
-    }).primaryKey().default(sql`(UUID_TO_BIN(UUID()))`),
+    }).primaryKey().default(sql`(UUID())`),
     firstName: varchar('first_name', {
         length: 50
     }).notNull(),
@@ -49,7 +49,7 @@ export const products = mysqlTable('products', {
 export const sales = mysqlTable('sales', {
     id: int('id').primaryKey().autoincrement(),
     clientId: int('client_id').notNull().references(() => clients.id),
-    userId: binary('user_id', {
+    userId: varchar('user_id', {
         length: 36
     }).notNull().references(() => users.id),
     createdDate: datetime('created_date').notNull().default(sql`NOW()`),
