@@ -1,5 +1,12 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
+import { db } from "@/services/mysql";
+import { users } from "db/schema";
+import { eq, sql } from "drizzle-orm";
+
+const workers = await db.select().from(users).where(eq(users.role, "worker"));
+
+console.log(workers);
 ---
 
 <DashboardLayout title="Workers">
@@ -19,9 +26,52 @@ import DashboardLayout from "@/layouts/dashboard-layout.astro";
                 <a
                     href="/dashboard/workers/add"
                     class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
-                    >Add Worker</a
                 >
+                    Add Worker
+                </a>
             </div>
         </header>
+
+        <section class="bg-white/30 p-4 rounded-md shadow-md">
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th class="text-left">Name</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Role</th>
+                        <th class="text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through all the workers -->
+                    {
+                        workers.map((worker) => (
+                            <tr>
+                                <td>{worker.firstName}</td>
+                                <td>{worker.email}</td>
+                                <td>{worker.role}</td>
+                                <td>
+                                    <div>
+                                        <a
+                                            href={`/dashboard/workers/${worker.id}/delete`}
+                                            class="text-red-500 hover:underline"
+                                        >
+                                            Delete
+                                        </a>
+
+                                        <a
+                                            href={`/dashboard/workers/${worker.id}/edit`}
+                                            class="text-blue-500 hover:underline ml-2"
+                                        >
+                                            Edit
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </section>
     </main>
 </DashboardLayout>
