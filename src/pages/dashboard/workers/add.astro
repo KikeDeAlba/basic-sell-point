@@ -1,0 +1,39 @@
+---
+import DashboardLayout from "@/layouts/dashboard-layout.astro";
+import CreateWorkerForm from "@/components/dashboard/workers/create-worker-form.astro";
+
+const title = "Create Product";
+---
+
+<DashboardLayout title={title}>
+    <main>
+        <h1
+            class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-9"
+        >
+            {title}
+        </h1>
+
+        <CreateWorkerForm />
+        <!-- <form action="/api/inventory/create-product" method="post">
+            <label>
+                <span> Name </span>
+                <input type="text" name="name" required />
+            </label>
+
+            <label>
+                <span> Price </span>
+                <input type="number" name="price" required />
+            </label>
+
+            <label>
+                <span> Quantity </span>
+                <input type="number" name="stock" required />
+            </label>
+
+            <label>
+                <span> Description </span>
+                <textarea name="description" required></textarea>
+            </label>
+        </form> -->
+    </main>
+</DashboardLayout>

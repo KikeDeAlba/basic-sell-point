@@ -1,0 +1,27 @@
+---
+import DashboardLayout from "@/layouts/dashboard-layout.astro";
+---
+
+<DashboardLayout title="Workers">
+    <main>
+        <header
+            class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
+        >
+            <div>
+                <h1 class="text-2xl font-semibold">Workers</h1>
+                <p>
+                    Here you can see all the workers that are currently working
+                    on the platform.
+                </p>
+            </div>
+
+            <div>
+                <a
+                    href="/dashboard/workers/add"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
+                    >Add Worker</a
+                >
+            </div>
+        </header>
+    </main>
+</DashboardLayout>
