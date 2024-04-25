@@ -12,10 +12,7 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
     const { description, name, price, stock } = product;
 
     const formattedPrice = priceFormmater.format(price);
-    const { addProduct, currentProducts } = useShopCarStore((state) => ({
-        addProduct: state.addProduct,
-        currentProducts: state.products,
-    }))
+    const addProduct = useShopCarStore((state) => state.addProduct)
 
     return (
         <form className="bg-white/30 p-4 rounded-md shadow-md h-fit"
