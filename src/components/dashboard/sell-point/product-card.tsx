@@ -27,6 +27,8 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
                 };
 
                 addProduct(newProduct)
+
+                e.currentTarget.reset();
             }}
         >
             <div className="flex justify-between items-center">
