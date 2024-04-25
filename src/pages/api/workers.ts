@@ -13,7 +13,7 @@ export const WorkerSchema = z.object({
     profilePicture: z.coerce.string()
 })
 
-export const POST = async ({ request, redirect }: APIContext) =>{
+export const POST = async ({ request, redirect }: APIContext) => {
     const data = await request.formData()
 
     const json = Object.fromEntries(data.entries())
@@ -24,7 +24,7 @@ export const POST = async ({ request, redirect }: APIContext) =>{
         return redirect('/dashboard/workers?error=Password is required')
     }
 
-    const hashToken = await bcrypt.hash(password,bcrypt.genSaltSync())
+    const hashToken = await bcrypt.hash(password, bcrypt.genSaltSync())
 
     const worker = WorkerSchema.parse(json)
 
@@ -33,4 +33,5 @@ export const POST = async ({ request, redirect }: APIContext) =>{
         token: hashToken
     }).execute()
 
+    return redirect('/dashboard/workers')
 }
