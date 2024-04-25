@@ -1,9 +1,8 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
-import { db } from "@/services/mysql";
-import { products } from "db/schema";
+import { getProducts } from "@/services/utils/get-products";
 
-const currentProducts = await db.select().from(products);
+const currentProducts = await getProducts();
 ---
 
 <DashboardLayout title="Inventory">
