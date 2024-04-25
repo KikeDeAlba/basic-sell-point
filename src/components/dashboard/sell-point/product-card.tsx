@@ -1,9 +1,10 @@
 import type { products } from "db/schema";
+import { useRef } from "react";
 import { useShopCarStore } from "stores/shop-car";
 
 
 
-const priceFormmater = new Intl.NumberFormat("es-MX", {
+export const priceFormmater = new Intl.NumberFormat("es-MX", {
     style: "currency",
     currency: "MXN",
 });
@@ -13,6 +14,7 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
 
     const formattedPrice = priceFormmater.format(price);
     const addProduct = useShopCarStore((state) => state.addProduct)
+    const $quantityInput = useRef<HTMLInputElement>(null)
 
     return (
         <form className="bg-white/30 p-4 rounded-md shadow-md h-fit"
@@ -28,7 +30,8 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
 
                 addProduct(newProduct)
 
-                e.currentTarget.reset();
+                if ($quantityInput.current != null) $quantityInput.current.value = "1"
+                $quantityInput.current?.focus()
             }}
         >
             <div className="flex justify-between items-center">
@@ -43,6 +46,8 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
                     className="w-1/2 p-2 border border-gray-300 rounded-md"
                     placeholder="Quantity"
                     name="quantity"
+                    defaultValue={1}
+                    ref={$quantityInput}
                 />
                 <button className="px-4 py-2 bg-blue-500 text-white rounded-md">
                     Add to cart
