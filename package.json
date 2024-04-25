@@ -16,6 +16,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.6.3",
     "bcrypt": "5.1.1",
+    "binary-uuid": "^2.0.3",
     "dotenv": "16.4.5",
     "drizzle-orm": "^0.30.9",
     "mysql2": "^3.9.7",
