@@ -1,0 +1,37 @@
+---
+import DashboardLayout from "@/layouts/dashboard-layout.astro";
+import { getProducts } from "@/services/utils/get-products";
+import { ProductCard } from "@/components/dashboard/sell-point/product-card";
+
+const products = await getProducts();
+---
+
+<DashboardLayout title="Sell point">
+    <main class="flex flex-col gap-4 h-full">
+        <header
+            class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
+        >
+            <div>
+                <h1 class="text-2xl font-semibold">Sell point</h1>
+                <p>
+                    Welcome to the sell point, here you can sell products to
+                    your customers.
+                </p>
+            </div>
+        </header>
+
+        <div
+            class="flex justify-between gap-4 p-4 bg-white/30 rounded-md shadow-md flex-1 overflow-hidden"
+        >
+            <section class="grid grid-cols-2 gap-4 h-full overflow-y-auto">
+                {
+                    products.map((product) => (
+                        <ProductCard client:load {...product} />
+                    ))
+                }
+            </section>
+
+            <section class="flex-1">a</section>
+        </div>
+    </main>
+</DashboardLayout>
