@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "10a8d6c3-60d4-45d9-8a94-68241143b3f8",
+  "id": "e0bf2093-c568-4d15-9ac8-184205e0b7c3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "clients": {
@@ -339,6 +339,13 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'worker'"
+        },
+        "profile_picture": {
+          "name": "profile_picture",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {},
