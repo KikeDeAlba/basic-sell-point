@@ -4,25 +4,13 @@ import { users } from "db/schema";
 import { eq } from "drizzle-orm";
 import LiElement from "./aside-utils/li-element.astro";
 
-const token = Astro.cookies.get("token");
-
-if (token == null || token.value == null) {
-    Astro.redirect("/login");
-    return;
-}
-
-const [user] = await db
-    .select({
-        name: users.firstName,
-        role: users.role,
-    })
-    .from(users)
-    .where(eq(users.token, token.value));
+// @ts-expect-error - Astro doesn't know about locals yet
+const user = Astro.locals.user;
 ---
 
 <aside class="h-screen overflow-hidden border-r border-r-white/20 px-5 py-4">
     <h1 class="text-2xl font-bold text-white mb-4">
-        Hello {user.name}!
+        Hello {user.firstName}!
     </h1>
 
     <nav>
