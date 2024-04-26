@@ -100,6 +100,7 @@ export const ShopCar = ({ clients }: Props) => {
                                         useShopCarStore.setState({ products: [], client: 0 });
                                         alert("The sale was successful");
                                     }
+                                    setCash(0);
                                 })
                         }}
                     >
