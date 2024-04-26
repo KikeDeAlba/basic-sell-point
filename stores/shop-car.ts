@@ -11,10 +11,16 @@ interface ShopCarStoreType {
     addProduct: (product: Product) => void;
     addOneProduct: (id: number) => void;
     removeOneProduct: (id: number) => void;
+    client: number
+    setClient: (client: number) => void;
 }
 
 export const useShopCarStore = create(persist<ShopCarStoreType>((set, get) => ({
     products: [],
+    client: 0,
+    setClient: (client) => {
+        set({ client })
+    },
     addProduct: (product) => {
         const productIndex = get().products.findIndex(({ id }) => id === product.id);
 

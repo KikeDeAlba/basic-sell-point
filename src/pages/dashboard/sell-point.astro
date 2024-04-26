@@ -1,10 +1,12 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
-import { getProducts } from "@/services/utils/get-products";
+import { getClients, getProducts } from "@/services/utils/get-products";
 import { ProductCard } from "@/components/dashboard/sell-point/product-card";
 import { ShopCar } from "@/components/dashboard/sell-point/shop-car";
 
 const products = await getProducts();
+
+const clients = await getClients();
 ---
 
 <DashboardLayout title="Sell point">
@@ -32,7 +34,7 @@ const products = await getProducts();
                 }
             </section>
 
-            <ShopCar client:load />
+            <ShopCar clients={clients} client:load />
         </div>
     </main>
 </DashboardLayout>
