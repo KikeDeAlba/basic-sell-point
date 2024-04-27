@@ -1,10 +1,153 @@
 ---
+import { db } from "@/services/mysql";
 import DashboardLayout from "../layouts/dashboard-layout.astro";
+import { clients, saleItems, users } from "db/schema";
+import { priceFormmater } from "@/components/dashboard/sell-point/product-card";
+// @ts-expect-error - Astro doesn't know about locals yet
+const user = Astro.locals.user;
+
+const totalClients = db.select().from(clients);
+const mapClients = totalClients.then((data) => data.map((client) => client));
+console.log(mapClients);
+const clientLength = totalClients.then((data) => data.length);
+console.log(clientLength);
+
+const totalUsers = db.select().from(users);
+const userLength = totalUsers.then((data) => data.length);
+console.log(userLength);
+
+const getUserSale = db.select().from(saleItems).where(user.id);
+const currentSalesUserID = db.select().from(saleItems).where(user.id);
+console.log(currentSalesUserID);
+
+const totalSales = currentSalesUserID.then((data) =>
+  data.reduce((acc, sale) => acc + sale.total ?? 0, 0)
+);
+console.log(totalSales);
 ---
 
 <DashboardLayout title="Dashboard">
-    <main>
-        <h1>Dashboard</h1>
-        <p>Welcome to the dashboard</p>
-    </main>
+  <main>
+    <section class="w-full py-12 md:py-24 lg:py-32">
+      <div class="container grid items-center gap-8 px-4 md:px-6">
+        <div class="space-y-4">
+          <h1
+            class="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl"
+          >
+            Punto de Venta
+          </h1>
+          <p
+            class="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
+          >
+            Punto de venta es un sistema de punto de venta moderno y fácil de
+            usar que le ayuda a administrar mejor su negocio. Está diseñado para
+            pequeñas empresas. y es perfecto para tiendas minoristas, cafeterías
+            y restaurantes.
+          </p>
+          <div class="flex flex-col gap-2 min-[400px]:flex-row">
+            <a
+              class="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+              href="/dashboard/inventory"
+            >
+              Inventario
+            </a>
+            <a
+              class="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+              href="localhost:3001/docs"
+            >
+              Api Docs
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
+    >
+      <div
+        class="container grid gap-8 px-4 md:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:px-6"
+      >
+        <div
+          class="rounded-lg border bg-card text-card-foreground shadow-sm"
+          data-v0-t="card"
+        >
+          <div class="p-6 flex flex-col items-start gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-8 w-8 text-gray-500 dark:text-gray-400"
+            >
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+            <div class="space-y-1">
+              <h3 class="text-xl font-bold">Usuarios Totales</h3>
+              <p class="text-4xl font-bold">{userLength}</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border bg-card text-card-foreground shadow-sm"
+          data-v0-t="card"
+        >
+          <div class="p-6 flex flex-col items-start gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-8 w-8 text-gray-500 dark:text-gray-400"
+            >
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
+            <div class="space-y-1">
+              <h3 class="text-xl font-bold">Clientes Nuevos</h3>
+              <p class="text-4xl font-bold">{clientLength}</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-lg border bg-card text-card-foreground shadow-sm"
+          data-v0-t="card"
+        >
+          <div class="p-6 flex flex-col items-start gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-8 w-8 text-gray-500 dark:text-gray-400"
+            >
+              <line x1="12" x2="12" y1="2" y2="22"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path>
+            </svg>
+            <div class="space-y-1">
+              <h3 class="text-xl font-bold">Ganancia</h3>
+              <p class="text-4xl font-bold">
+                {totalSales.then((data) => priceFormmater.format(data))}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </DashboardLayout>

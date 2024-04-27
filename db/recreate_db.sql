@@ -1,5 +1,4 @@
--- Active: 1710196960256@@127.0.0.1@3306@sell_point
-
+-- Active: 1713670017818@@127.0.0.1@3306@
 DROP DATABASE IF EXISTS sell_point;
 
 CREATE DATABASE sell_point;
