@@ -45,7 +45,8 @@ export const POST = async ({ cookies, request }: APIContext) => {
     const items = await Promise.all(
         ItemSchema.array().parse(json.items).map(async item => {
             const [product] = await db.select({
-                price: products.price
+                price: products.price,
+                stock: products.stock
             }).from(products).where(
                 eq(products.id, item.productId)
             )
@@ -53,12 +54,21 @@ export const POST = async ({ cookies, request }: APIContext) => {
             return {
                 ...item,
                 saleId: fieldPackage.insertId,
-                total: product.price * item.quantity
+                total: product.price * item.quantity,
+                stock: product.stock
             }
         })
     )
 
     await db.insert(saleItems).values(items)
+
+    await Promise.all(
+        items.map(async item => {
+            await db.update(products).set({
+                stock: item.stock - item.quantity
+            })
+        })
+    )
 
     return new Response("OK", { status: 200 })
 }
