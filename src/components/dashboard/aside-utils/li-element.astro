@@ -1,15 +1,13 @@
 ---
 interface Props {
   href: string;
-  onClick?: string;
 }
 
-const { href, onClick } = Astro.props;
+const { href } = Astro.props;
 ---
 
 <a
   href={href}
-  onclick={onClick}
   class="text-black/80 hover:text-white transition-all duration-200 ease-in-out py-2 px-4 rounded-md hover:bg-black/80"
 >
   <li>
