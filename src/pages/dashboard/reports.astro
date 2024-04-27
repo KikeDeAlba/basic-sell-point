@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
+import { RangeReport } from "@/components/dashboard/reports/widgets/range-report";
 ---
 
 <DashboardLayout title="Reports">
@@ -11,4 +12,8 @@ import DashboardLayout from "@/layouts/dashboard-layout.astro";
             <p>View and download reports for your organization.</p>
         </div>
     </header>
+
+    <section>
+        <RangeReport client:load />
+    </section>
 </DashboardLayout>
