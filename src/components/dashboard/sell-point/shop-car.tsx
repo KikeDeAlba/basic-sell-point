@@ -106,6 +106,8 @@ export const ShopCar = ({ clients }: Props) => {
                                         alert("The sale was successful");
                                     }
                                     setCash(0);
+
+                                    window.location.reload();
                                 })
                         }}
                     >
