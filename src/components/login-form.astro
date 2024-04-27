@@ -19,20 +19,38 @@
     --font-sans: "Inter";
   }
 </style>
+<style>
+  .form-container {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .form-container.active {
+    opacity: 1;
+  }
+</style>
+
 <form
   action="/api/auth/login"
-  class="rounded-lg border border-white/20 bg-card text-card-foreground shadow-sm mx-auto w-full max-w-sm"
+  class="form-container rounded-lg border border-white/20 bg-card text-card-foreground shadow-sm mx-auto w-full max-w-sm
+    file:bg-transparent file:border-0 file:shadow-none file:text-white file:ring-0 file:ring-offset-0"
   data-v0-t="card"
 >
-  <div class="p-6 flex flex-col items-center space-y-1">
-    <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">
+  <div
+    class="p-6 flex flex-col items-center space-y-1
+      bg-gradient-to-r from-primary to-green-300 rounded-t-lg"
+  >
+    <h3
+      class="whitespace-nowrap tracking-tight text-2xl font-bold
+      text-dark text-center"
+    >
       Welcome Back
     </h3>
     <p class="text-sm text-muted-foreground text-center">
       Enter your email to login to your account
     </p>
   </div>
-  <div class="p-6 space-y-4">
+  <div class="p-6 space-y-4 shadow-lg rounded-b-lg transition-transform">
     <div class="space-y-2 w-full max-w-sm">
       <label
         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -64,14 +82,34 @@
       />
     </div>
     <button
-      class="inline-flex bg-white/20 hover:bg-white/30 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+      class="flex
+          items-center
+          justify-center
+          h-10
+          rounded-md
+          bg-green-300
+          border
+          border-black/20
+          bg-primary
+          text-black
+          font-medium
+          text-sm
+          shadow-sm
+          disabled:cursor-not-allowed
+          disabled:opacity-50
+          w-full
+          hover:bg-green-400"
       type="submit"
     >
       Login
     </button>
   </div>
-  <div class="items-center p-6 flex flex-col space-y-2 text-white/50">
-    <a class="w-full" href="#"> Create an account </a>
-    <a class="w-full underline" href="#"> Forgot your password? </a>
-  </div>
 </form>
+
+<script>
+  // JavaScript para activar la transición después de que el formulario se haya renderizado en la página
+  window.addEventListener("DOMContentLoaded", function () {
+    var formContainer = document.querySelector(".form-container");
+    formContainer?.classList.add("active");
+  });
+</script>

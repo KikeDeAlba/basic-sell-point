@@ -6,23 +6,34 @@ import { priceFormmater } from "@/components/dashboard/sell-point/product-card";
 // @ts-expect-error - Astro doesn't know about locals yet
 const user = Astro.locals.user;
 
-const totalClients = db.select().from(clients);
-const mapClients = totalClients.then((data) => data.map((client) => client));
-console.log(mapClients);
-const clientLength = totalClients.then((data) => data.length);
-console.log(clientLength);
+async function totalClientsLen() {
+  const clientsLen = await db.select().from(clients);
+  return clientsLen.length;
+}
 
-const totalUsers = db.select().from(users);
-const userLength = totalUsers.then((data) => data.length);
-console.log(userLength);
+const totalClients = await totalClientsLen();
 
-const getUserSale = db.select().from(saleItems).where(user.id);
-const currentSalesUserID = db.select().from(saleItems).where(user.id);
-console.log(currentSalesUserID);
+console.log(await totalClientsLen());
 
-const totalSales = currentSalesUserID.then((data) =>
-  data.reduce((acc, sale) => acc + sale.total ?? 0, 0)
+async function totalUsersLen() {
+  const usersLen = await db.select().from(users);
+  return usersLen.length;
+}
+
+const totalUsers = await totalUsersLen();
+
+console.log(await totalUsersLen());
+
+async function currentSalesWhereUserID() {
+  const sales = await db.select().from(saleItems).where(user.id);
+  return sales;
+}
+const sales = await currentSalesWhereUserID();
+
+const totalSales = priceFormmater.format(
+  sales.reduce((acc, sale) => acc + sale.total, 0)
 );
+
 console.log(totalSales);
 ---
 
@@ -88,7 +99,9 @@ console.log(totalSales);
             </svg>
             <div class="space-y-1">
               <h3 class="text-xl font-bold">Usuarios Totales</h3>
-              <p class="text-4xl font-bold">{userLength}</p>
+              <p class="text-4xl font-bold">
+                {totalUsers}
+              </p>
             </div>
           </div>
         </div>
@@ -114,7 +127,7 @@ console.log(totalSales);
             </svg>
             <div class="space-y-1">
               <h3 class="text-xl font-bold">Clientes Nuevos</h3>
-              <p class="text-4xl font-bold">{clientLength}</p>
+              <p class="text-4xl font-bold">{totalClients}</p>
             </div>
           </div>
         </div>
@@ -142,7 +155,7 @@ console.log(totalSales);
             <div class="space-y-1">
               <h3 class="text-xl font-bold">Ganancia</h3>
               <p class="text-4xl font-bold">
-                {totalSales.then((data) => priceFormmater.format(data))}
+                {totalSales}
               </p>
             </div>
           </div>
