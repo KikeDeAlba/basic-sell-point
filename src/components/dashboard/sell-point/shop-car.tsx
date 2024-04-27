@@ -70,6 +70,11 @@ export const ShopCar = ({ clients }: Props) => {
                                 return;
                             }
 
+                            if (shopCarProducts.some(({ stock, quantity }) => stock < quantity)) {
+                                alert("There are products with insufficient stock");
+                                return;
+                            }
+
                             if (!confirm("Are you sure you want to sell these products?")) {
                                 return;
                             }
