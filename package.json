@@ -22,6 +22,7 @@
     "binary-uuid": "^2.0.3",
     "dotenv": "16.4.5",
     "drizzle-orm": "^0.30.9",
+    "framer-motion": "11.1.7",
     "mysql2": "^3.9.7",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

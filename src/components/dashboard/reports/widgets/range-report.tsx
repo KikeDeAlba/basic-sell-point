@@ -1,6 +1,7 @@
 import type { sales } from "db/schema"
 import { useEffect, useState } from "react"
 import { priceFormmater } from "../../sell-point/product-card"
+import { AnimatePresence, motion } from "framer-motion"
 
 
 const getCurrentDateMinurOne = () => {
@@ -72,24 +73,38 @@ export const RangeReport = () => {
                 />
             </div>
 
-            <div
-                className="flex justify-between items-center gap-4"
-            >
-                <span
-                    className="text-xl font-semibold"
-                >Total: {priceFormmater.format(
-                    currentSales.reduce((acc, sale) => acc + sale.total ?? 0, 0)
-                )}
-                </span>
+            <AnimatePresence>
 
-                <a
-                    href={`/print/range-report?startDate=${dates.startDate.toISOString()}&endDate=${dates.endDate.toISOString()}`}
-                    target="_blank"
-                    className="p-2 bg-blue-500 text-white rounded-md"
-                >
-                    Download
-                </a>
-            </div>
+                {currentSales.reduce((acc, sale) => acc + sale.total ?? 0, 0) !== 0 && (
+                    <motion.div
+                        className="flex justify-between items-center gap-4 overflow-hidden"
+                        initial={{
+                            height: 0
+                        }}
+                        animate={{
+                            height: 'auto'
+                        }}
+                        exit={{
+                            height: 0
+                        }}
+                    >
+                        <span
+                            className="text-xl font-semibold"
+                        >Total: {priceFormmater.format(
+                            currentSales.reduce((acc, sale) => acc + sale.total ?? 0, 0)
+                        )}
+                        </span>
+
+                        <a
+                            href={`/print/range-report?startDate=${dates.startDate.toISOString()}&endDate=${dates.endDate.toISOString()}`}
+                            target="_blank"
+                            className="p-2 bg-blue-500 text-white rounded-md"
+                        >
+                            Download
+                        </a>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </article>
     )
 }
