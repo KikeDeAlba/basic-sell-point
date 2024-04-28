@@ -50,12 +50,14 @@ const workers = await db.select().from(users).where(eq(users.role, "worker"));
                                 <td>{worker.role}</td>
                                 <td>
                                     <div>
-                                        <a
-                                            href={`/api/workers/${worker.id}/delete`}
-                                            class="text-red-500 hover:underline"
+                                        <form
+                                            class="inline-block"
+                                            action={`/api/workers/${worker.id}/delete`}
                                         >
-                                            Delete
-                                        </a>
+                                            <button class="text-red-500 hover:underline">
+                                                Delete
+                                            </button>
+                                        </form>
 
                                         <a
                                             href={`/dashboard/workers/${worker.id}/edit`}
