@@ -8,64 +8,58 @@ import { and, eq, gte, lte, sql } from "drizzle-orm";
 const data = Object.fromEntries(Astro.url.searchParams);
 
 const currentSales =
-    data.startDate === data.endDate
-        ? await db
-              .select()
-              .from(sales)
-              .where(
-                  eq(
-                      sql`DATE(${sales.createdDate})`,
-                      new Date(data.startDate).toISOString().split("T")[0],
-                  ),
-              )
-        : await db
-              .select()
-              .from(sales)
-              .where(
-                  and(
-                      gte(
-                          sql`DATE(${sales.createdDate})`,
-                          new Date(data.startDate),
-                      ),
-                      lte(
-                          sql`DATE(${sales.createdDate})`,
-                          new Date(data.endDate),
-                      ),
-                  ),
-              );
-
-const currentSalesWithProducts = await Promise.all(
-    currentSales.map(async (sales) => {
-        const currentProducts = await db
-            .select()
-            .from(saleItems)
-            .where(eq(saleItems.saleId, sales.id));
-
-        const productsWithInfo = await Promise.all(
-            currentProducts.map(async (product) => {
-                const [productInfo] = await db
-                    .select()
-                    .from(products)
-                    .where(eq(products.id, product.productId));
-
-                return {
-                    ...product,
-                    info: productInfo,
-                };
-            }),
+  data.startDate === data.endDate
+    ? await db
+        .select()
+        .from(sales)
+        .where(
+          eq(
+            sql`DATE(${sales.createdDate})`,
+            new Date(data.startDate).toISOString().split("T")[0]
+          )
+        )
+    : await db
+        .select()
+        .from(sales)
+        .where(
+          and(
+            gte(sql`DATE(${sales.createdDate})`, new Date(data.startDate)),
+            lte(sql`DATE(${sales.createdDate})`, new Date(data.endDate))
+          )
         );
 
+const currentSalesWithProducts = await Promise.all(
+  currentSales.map(async (sales) => {
+    const currentProducts = await db
+      .select()
+      .from(saleItems)
+      .where(eq(saleItems.saleId, sales.id));
+
+    const productsWithInfo = await Promise.all(
+      currentProducts.map(async (product) => {
+        const [productInfo] = await db
+          .select()
+          .from(products)
+          .where(eq(products.id, product.productId));
+
         return {
-            ...sales,
-            products: productsWithInfo,
+          ...product,
+          info: productInfo,
         };
-    }),
+      })
+    );
+
+    return {
+      ...sales,
+      products: productsWithInfo,
+    };
+  })
 );
 
 const dateFormatter = new Intl.DateTimeFormat("es-MX", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
 console.log(currentSalesWithProducts);
@@ -74,43 +68,53 @@ const title = `Sales from ${dateFormatter.format(new Date(data.startDate))} to $
 ---
 
 <Layout title={title}>
-    <main class="p-4 bg-white shadow-md rounded-md">
-        <h1 class="text-2xl font-bold text-center">{title}</h1>
-        <table class="w-full mt-4">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="p-2">Product</th>
-                    <th class="p-2">Quantity</th>
-                    <th class="p-2">Price</th>
-                    <th class="p-2">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    currentSalesWithProducts.map((sale) =>
-                        sale.products.map((product) => (
-                            <tr class="border-b">
-                                <td>{product.info.name}</td>
-                                <td>{product.quantity}</td>
-                                <td>
-                                    {priceFormmater.format(
-                                        Number(product.info.price),
-                                    )}
-                                </td>
-                                <td>{priceFormmater.format(product.total)}</td>
-                            </tr>
-                        )),
-                    )
-                }
-            </tbody>
-        </table>
-    </main>
+  <main class="p-4 bg-white shadow-md rounded-md">
+    <h1 class="text-2xl font-bold text-center">{title}</h1>
+    <table class="w-full mt-4">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left">Product</th>
+          <th class="px-4 py-2 text-left">Quantity</th>
+          <th class="px-4 py-2 text-left">Price</th>
+          <th class="px-4 py-2 text-left">Total</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700
+        divide-y
+        divide-gray-200">
+        {
+          currentSalesWithProducts.map((sale) =>
+            sale.products.map((product) => (
+              <tr
+                class="border-b
+                border-gray-200
+                hover:bg-gray-100
+                transition-colors
+                duration-200
+                ease-in-out
+              "
+              >
+                <td class="px-4 py-3">{product.info.name}</td>
+                <td class="px-4 py-3">{product.quantity}</td>
+                <td class="px-4 py-3">
+                  {priceFormmater.format(Number(product.info.price))}
+                </td>
+                <td class="px-4 py-3">
+                  {priceFormmater.format(product.total)}
+                </td>
+              </tr>
+            ))
+          )
+        }
+      </tbody>
+    </table>
+  </main>
 </Layout>
 
 <script>
-    const instantPrint = () => {
-        window.print();
-    };
+  const instantPrint = () => {
+    window.print();
+  };
 
-    instantPrint();
+  instantPrint();
 </script>
