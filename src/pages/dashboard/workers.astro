@@ -5,9 +5,17 @@ import { users } from "db/schema";
 import { eq, sql } from "drizzle-orm";
 
 const workers = await db.select().from(users).where(eq(users.role, "worker"));
+const { error } = Object.fromEntries(Astro.url.searchParams);
 ---
 
 <DashboardLayout title="Workers">
+    {
+        error != null && (
+            <div class="bg-red-500/90 animate-fade-in animate-delay-250 rounded-md text-white p-4 mb-4">
+                {error}
+            </div>
+        )
+    }
     <main>
         <header
             class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"

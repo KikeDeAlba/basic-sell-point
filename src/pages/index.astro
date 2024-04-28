@@ -10,7 +10,7 @@ const { error } = Object.fromEntries(Astro.url.searchParams);
 		<LoginForm />
 		{
 			error != null && (
-				<div class="bg-red-500/90 rounded-md text-white p-4 mb-4">
+				<div class="bg-red-500/90 animate-fade-in animate-delay-250 rounded-md text-white p-4 mb-4">
 					{error}
 				</div>
 			)
