@@ -32,7 +32,7 @@
 
 <form
   action="/api/auth/login"
-  class="form-container rounded-lg border border-white/20 bg-card text-card-foreground shadow-sm mx-auto w-full max-w-sm
+  class="form-container animate-fade-in animate-delay-250 rounded-lg border border-white/20 bg-card text-card-foreground shadow-sm mx-auto w-full max-w-sm
     file:bg-transparent file:border-0 file:shadow-none file:text-white file:ring-0 file:ring-offset-0"
   data-v0-t="card"
 >
@@ -106,11 +106,3 @@
     </button>
   </div>
 </form>
-
-<script>
-  // JavaScript para activar la transición después de que el formulario se haya renderizado en la página
-  window.addEventListener("DOMContentLoaded", function () {
-    var formContainer = document.querySelector(".form-container");
-    formContainer?.classList.add("active");
-  });
-</script>

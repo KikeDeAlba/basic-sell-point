@@ -1,10 +1,19 @@
 ---
 import LoginForm from "../components/login-form.astro";
 import Layout from "../layouts/Layout.astro";
+
+const { error } = Object.fromEntries(Astro.url.searchParams);
 ---
 
 <Layout title="Login">
-	<main class="flex justify-center items-center h-screen">
+	<main class="flex flex-col justify-center items-center h-screen gap-3">
 		<LoginForm />
+		{
+			error != null && (
+				<div class="bg-red-500/90 rounded-md text-white p-4 mb-4">
+					{error}
+				</div>
+			)
+		}
 	</main>
 </Layout>

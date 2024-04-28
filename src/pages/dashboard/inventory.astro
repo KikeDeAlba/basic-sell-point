@@ -3,9 +3,20 @@ import DashboardLayout from "@/layouts/dashboard-layout.astro";
 import { getProducts } from "@/services/utils/get-products";
 
 const currentProducts = await getProducts();
+
+const { error } = Object.fromEntries(Astro.url.searchParams);
+
+console.log(error);
 ---
 
 <DashboardLayout title="Inventory">
+    {
+        error != null && (
+            <div class="bg-red-500/90 animate-fade-in animate-delay-250 rounded-md text-white p-4 mb-4">
+                {error}
+            </div>
+        )
+    }
     <main class="flex flex-col h-full overflow-hidden">
         <header class="flex justify-between items-center mb-4">
             <h1 class="text-3xl font-bold" transition:name="inventory-title">
