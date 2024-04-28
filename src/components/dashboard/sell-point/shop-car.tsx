@@ -49,7 +49,7 @@ export const ShopCar = ({ clients }: Props) => {
                         </ul>
 
                         <form
-                            className="flex flex-col justify-between"
+                            className="flex flex-col gap-2"
                             onSubmit={(e) => {
                                 e.preventDefault();
 
@@ -177,7 +177,7 @@ export const ShopCar = ({ clients }: Props) => {
                             {clients.map((c) => (
                                 <li
                                     key={c.id}
-                                    className={`p-2 text-white cursor-pointer rounded-md ${c.id === client ? 'bg-blue-500' : 'bg-blue-800 hover:bg-blue-300 transition-colors'}`}
+                                    className={`gap-2 p-2 text-black cursor-pointer rounded-md shadow-lg bg-blue border-black ${c.id === client ? 'bg-blue-300 shadow-md' : 'hover:bg-slate-400'}`}
                                     onClick={() => useShopCarStore.setState({ client: c.id })}
                                 >
                                     {c.name}
