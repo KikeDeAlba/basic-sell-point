@@ -13,10 +13,10 @@ const workers = await db.select().from(users).where(eq(users.role, "worker"));
             class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
         >
             <div>
-                <h1 class="text-2xl font-semibold">Workers</h1>
+                <h1 class="text-2xl font-semibold">Trabajadores</h1>
                 <p>
-                    Here you can see all the workers that are currently working
-                    on the platform.
+                    Aquí puedes ver a todos los trabajadores que están
+                    actualmente trabajando en la plataforma.
                 </p>
             </div>
 
@@ -25,7 +25,7 @@ const workers = await db.select().from(users).where(eq(users.role, "worker"));
                     href="/dashboard/workers/add"
                     class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
                 >
-                    Add Worker
+                    Nuevo Trabajador
                 </a>
             </div>
         </header>
@@ -34,10 +34,10 @@ const workers = await db.select().from(users).where(eq(users.role, "worker"));
             <table class="w-full table-auto border-collapse">
                 <thead>
                     <tr>
-                        <th class="text-left">Name</th>
-                        <th class="text-left">Email</th>
-                        <th class="text-left">Role</th>
-                        <th class="text-left">Actions</th>
+                        <th class="text-left">Nombre</th>
+                        <th class="text-left">Correo</th>
+                        <th class="text-left">Rol</th>
+                        <th class="text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

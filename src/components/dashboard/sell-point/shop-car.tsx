@@ -35,7 +35,7 @@ export const ShopCar = ({ clients }: Props) => {
                     className={`flex-1 p-2 text-white ${currentSection === 'client' ? 'bg-blue-500' : 'bg-blue-400'
                         }`}
                 >
-                    Clients
+                    Clientes
                 </button>
             </div>
 
@@ -46,10 +46,6 @@ export const ShopCar = ({ clients }: Props) => {
                             <TicketProduct key={product.id} {...product} />
                         ))}
                     </ul>
-
-
-
-
 
                     <form
                         onSubmit={(e) => {
@@ -115,19 +111,19 @@ export const ShopCar = ({ clients }: Props) => {
                             <div className="flex flex-col gap-1">
                                 <label className="flex w-fit items-center gap-2 text-sm">
                                     <span
-                                    >Payment Method:</span>
+                                    >Metodo de pago:</span>
                                     <select
                                         name="paymentMethod"
                                         className="w-full p-2 rounded-md"
                                     >
-                                        <option value="cash">Cash</option>
-                                        <option value="credit_card">Credit Card</option>
+                                        <option value="cash">Efectivo</option>
+                                        <option value="credit_card">Tarjeta</option>
                                     </select>
                                 </label>
 
 
                                 <label className="flex w-fit items-center gap-2 text-sm">
-                                    Cash:
+                                    Con cuanto paga:
                                     <input
                                         name="cash"
                                         type="number"
@@ -146,7 +142,7 @@ export const ShopCar = ({ clients }: Props) => {
                                     )
                                 }</span>
 
-                                <span className="">Change: {
+                                <span className="">Cambio: {
                                     priceFormmater.format(
                                         cash - total < 0 ? 0 : cash - total
                                     )
@@ -155,7 +151,7 @@ export const ShopCar = ({ clients }: Props) => {
                         </div>
 
                         <button className="w-full p-4 bg-blue-500 text-white rounded-md">
-                            Checkout
+                            Vender
                         </button>
                     </form>
                 </div>
@@ -178,7 +174,7 @@ export const ShopCar = ({ clients }: Props) => {
                     <a href="/dashboard/clients/add"
                         className="w-full p-4 bg-blue-500 text-white rounded-md text-center hover:bg-blue-600 transition-colors"
                     >
-                        Add new client
+                        Agregar Cliente
                     </a>
                 </div>
             )}

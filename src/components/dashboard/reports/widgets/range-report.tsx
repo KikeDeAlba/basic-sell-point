@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion"
 
 const getCurrentDateMinurOne = () => {
     const date = new Date()
-    date.setDate(date.getDate() - 1)
     return date
 }
 
@@ -40,7 +39,7 @@ export const RangeReport = () => {
             <header
                 className="flex justify-between items-center"
             >
-                <h2 className="text-xl font-semibold">Range Report</h2>
+                <h2 className="text-xl font-semibold">Reporte por rango</h2>
             </header>
 
             <div
