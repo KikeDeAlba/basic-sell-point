@@ -40,7 +40,7 @@ export const ShopCar = ({ clients }: Props) => {
             </div>
 
             {currentSection === 'ticket' && (
-                <div className="flex-1 h-full flex flex-col justify-between gap-2">
+                <div className="flex-1 h-full flex flex-col justify-between gap-2 animate-fade-in animate-duration-150">
                     <ul className="flex flex-col gap-2 flex-1 overflow-y-auto">
                         {shopCarProducts.map((product) => (
                             <TicketProduct key={product.id} {...product} />
@@ -158,7 +158,7 @@ export const ShopCar = ({ clients }: Props) => {
             )}
 
             {currentSection === 'client' && (
-                <div className="flex-1 h-full flex flex-col justify-between gap-2">
+                <div className="flex-1 h-full flex flex-col justify-between gap-2 animate-fade-in animate-duration-150">
                     <ul className="flex flex-col gap-2 flex-1 overflow-y-auto">
                         {clients.map((c) => (
                             <li
