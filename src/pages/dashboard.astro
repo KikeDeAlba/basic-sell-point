@@ -3,7 +3,7 @@ import { db } from "@/services/mysql";
 import DashboardLayout from "../layouts/dashboard-layout.astro";
 import { clients, saleItems, sales, users } from "db/schema";
 import { priceFormmater } from "@/components/dashboard/sell-point/product-card";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 // @ts-expect-error - Astro doesn't know about locals yet
 const user = Astro.locals.user;
 
@@ -15,8 +15,12 @@ async function totalClientsLen() {
 const totalClients = await totalClientsLen();
 
 async function totalUsersLen() {
-  const usersLen = await db.select().from(users);
-  return usersLen.length;
+  const [usersLen] = await db
+    .select({
+      counter: sql`COUNT(*)`,
+    })
+    .from(users);
+  return usersLen.counter;
 }
 
 const totalUsers = await totalUsersLen();
