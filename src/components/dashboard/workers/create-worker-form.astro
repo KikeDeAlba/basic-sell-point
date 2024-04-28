@@ -1,15 +1,36 @@
+---
+import type { users } from "db/schema";
+
+interface Props {
+    defaultValues?: typeof users.$inferSelect;
+}
+
+const { defaultValues } = Astro.props;
+
+const title = defaultValues != null ? "Editar usuario" : "Crear usuario";
+const description =
+    defaultValues != null
+        ? "Edita los datos del usuario."
+        : "Crea un nuevo usuario.";
+
+const action =
+    defaultValues != null
+        ? `/api/workers/${defaultValues.id ?? ""}/edit`
+        : "/api/workers";
+---
+
 <!--
 // v0 by Vercel.
 // https://v0.dev/t/3SCZ1rEFXtk
 -->
 <div class="mx-auto max-w-md space-y-6">
     <div class="space-y-2 text-center">
-        <h1 class="text-3xl font-bold">Register</h1>
+        <h1 class="text-3xl font-bold">{title}</h1>
         <p class="text-gray-500 dark:text-gray-400">
-            Create your account to get started.
+            {description}
         </p>
     </div>
-    <form class="space-y-4" action="/api/workers" method="post">
+    <form class="space-y-4" action={action} method="post">
         <div class="grid grid-cols-2 gap-4">
             <div class="space-y-2">
                 <label
@@ -24,6 +45,7 @@
                     placeholder="John"
                     required=""
                     name="firstName"
+                    value={defaultValues?.firstName ?? ""}
                 />
             </div>
             <div class="space-y-2">
@@ -39,6 +61,7 @@
                     placeholder="Doe"
                     required=""
                     name="lastName"
+                    value={defaultValues?.lastName ?? ""}
                 />
             </div>
         </div>
@@ -56,6 +79,7 @@
                 required=""
                 name="email"
                 type="email"
+                value={defaultValues?.email ?? ""}
             />
         </div>
         <div class="space-y-2">
@@ -73,6 +97,7 @@
                 required=""
                 type="number"
                 name="age"
+                value={defaultValues?.age ?? ""}
             />
         </div>
         <div class="space-y-2">
@@ -88,8 +113,15 @@
                 required
                 name="role"
             >
-                <option value="worker" selected> Worker </option>
-                <option value="admin">Admin</option>
+                <option
+                    value="worker"
+                    selected={defaultValues?.role === "worker"}
+                >
+                    Worker
+                </option>
+                <option value="admin" selected={defaultValues?.role === "admin"}
+                    >Admin</option
+                >
             </select>
         </div>
         <div class="space-y-2">
@@ -102,7 +134,7 @@
             <input
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="password"
-                required=""
+                required={defaultValues == null}
                 name="password"
                 type="password"
             />

@@ -1,8 +1,15 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
 import CreateWorkerForm from "@/components/dashboard/workers/create-worker-form.astro";
+import { users } from "db/schema";
 
-const title = "Create Product";
+interface Props {
+    defaultValues?: typeof users.$inferSelect;
+}
+
+const { defaultValues } = Astro.props;
+
+const title = defaultValues != null ? "Edit Worker" : "Create Worker";
 ---
 
 <DashboardLayout title={title}>
@@ -13,7 +20,7 @@ const title = "Create Product";
             {title}
         </h1>
 
-        <CreateWorkerForm />
+        <CreateWorkerForm defaultValues={defaultValues} />
         <!-- <form action="/api/inventory/create-product" method="post">
             <label>
                 <span> Name </span>

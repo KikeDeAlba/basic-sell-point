@@ -10,7 +10,7 @@ export const WorkerSchema = z.object({
     email: z.coerce.string(),
     age: z.coerce.number(),
     role: z.enum(['worker', 'admin']),
-    profilePicture: z.coerce.string()
+    profilePicture: z.coerce.string().optional()
 })
 
 export const POST = async ({ request, redirect }: APIContext) => {

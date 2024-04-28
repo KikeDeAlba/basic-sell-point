@@ -49,23 +49,21 @@ const workers = await db.select().from(users).where(eq(users.role, "worker"));
                                 <td>{worker.email}</td>
                                 <td>{worker.role}</td>
                                 <td>
-                                    <div>
-                                        <form
-                                            class="inline-block"
-                                            action={`/api/workers/${worker.id}/delete`}
-                                        >
-                                            <button class="text-red-500 hover:underline">
-                                                Delete
-                                            </button>
-                                        </form>
+                                    <form
+                                        class="inline-block"
+                                        action={`/api/workers/${worker.id}/delete`}
+                                    >
+                                        <button class="border border-red-500 text-red-500 px-2 py-1 rounded ml-2 hover:bg-red-500 hover:text-white transition-colors">
+                                            Delete
+                                        </button>
+                                    </form>
 
-                                        <a
-                                            href={`/dashboard/workers/${worker.id}/edit`}
-                                            class="text-blue-500 hover:underline ml-2"
-                                        >
-                                            Edit
-                                        </a>
-                                    </div>
+                                    <a
+                                        href={`/dashboard/workers/${worker.id}/edit`}
+                                        class="border border-blue-500 text-blue-500 px-2 py-1 rounded ml-2 hover:bg-blue-500 hover:text-white transition-colors"
+                                    >
+                                        Edit
+                                    </a>
                                 </td>
                             </tr>
                         ))
