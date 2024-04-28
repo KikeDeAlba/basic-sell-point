@@ -20,27 +20,6 @@ const title = editMode ? "Edit product" : "Add product";
         >
             {title}
         </h1>
-        <!-- <form action="/api/inventory/create-product" method="post">
-            <label>
-                <span> Name </span>
-                <input type="text" name="name" required />
-            </label>
-
-            <label>
-                <span> Price </span>
-                <input type="number" name="price" required />
-            </label>
-
-            <label>
-                <span> Quantity </span>
-                <input type="number" name="stock" required />
-            </label>
-
-            <label>
-                <span> Description </span>
-                <textarea name="description" required></textarea>
-            </label>
-        </form> -->
 
         <AddProductForm defaultValues={defaultValues} />
     </main>
