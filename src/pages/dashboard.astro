@@ -1,8 +1,9 @@
 ---
 import { db } from "@/services/mysql";
 import DashboardLayout from "../layouts/dashboard-layout.astro";
-import { clients, saleItems, users } from "db/schema";
+import { clients, saleItems, sales, users } from "db/schema";
 import { priceFormmater } from "@/components/dashboard/sell-point/product-card";
+import { eq } from "drizzle-orm";
 // @ts-expect-error - Astro doesn't know about locals yet
 const user = Astro.locals.user;
 
@@ -25,13 +26,17 @@ const totalUsers = await totalUsersLen();
 console.log(await totalUsersLen());
 
 async function currentSalesWhereUserID() {
-  const sales = await db.select().from(saleItems).where(user.id);
-  return sales;
+  const currentSales = await db
+    .select()
+    .from(sales)
+    .where(eq(sales.userId, user.id));
+
+  return currentSales;
 }
-const sales = await currentSalesWhereUserID();
+const currentSales = await currentSalesWhereUserID();
 
 const totalSales = priceFormmater.format(
-  sales.reduce((acc, sale) => acc + sale.total, 0)
+  currentSales.reduce((acc, sale) => acc + sale.total, 0),
 );
 
 console.log(totalSales);
@@ -63,7 +68,7 @@ console.log(totalSales);
               Inventario
             </a>
             <a
-              class="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+              class="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
               href="localhost:3001/docs"
             >
               Api Docs
