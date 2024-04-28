@@ -8,7 +8,9 @@ const currentProducts = await getProducts();
 <DashboardLayout title="Inventory">
     <main class="flex flex-col h-full overflow-hidden">
         <header class="flex justify-between items-center mb-4">
-            <h1 class="text-3xl font-bold text-white/80">Inventory</h1>
+            <h1 class="text-3xl font-bold" transition:name="inventory-title">
+                Inventario
+            </h1>
 
             <a
                 href="/dashboard/inventory/add"
