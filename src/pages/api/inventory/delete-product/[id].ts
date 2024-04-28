@@ -10,7 +10,7 @@ export const POST = async ({ params, redirect }: APIContext) => {
         // Delete the product with the given ID from the database
         await db.delete(products).where(sql`id = ${id}`).execute()
     } catch (error) {
-        return redirect('/dashboard/inventory?error=Este producto ya ha sido vendido y no puede ser eliminado.')
+        return redirect('/dashboard/inventory?error=This product has already been sold and cannot be deleted.')
     }
 
     return redirect('/dashboard/inventory')
