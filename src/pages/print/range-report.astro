@@ -2,6 +2,7 @@
 import { priceFormmater } from "@/components/dashboard/sell-point/product-card";
 import Layout from "@/layouts/Layout.astro";
 import { db } from "@/services/mysql";
+import { Code } from "astro:components";
 import { products, saleItems, sales } from "db/schema";
 import { and, eq, gte, lte, sql } from "drizzle-orm";
 
@@ -64,6 +65,17 @@ const dateFormatter = new Intl.DateTimeFormat("es-MX", {
 
 console.log(currentSalesWithProducts);
 
+const sumTotal = currentSalesWithProducts.reduce(
+  (acc, sale) =>
+    acc +
+    sale.products.reduce((acc, product) => acc + Number(product.total), 0),
+  0
+);
+
+const totalFormatted = priceFormmater.format(sumTotal);
+
+console.log(totalFormatted);
+
 const title = `Sales from ${dateFormatter.format(new Date(data.startDate))} to ${dateFormatter.format(new Date(data.endDate))}`;
 ---
 
@@ -108,6 +120,18 @@ const title = `Sales from ${dateFormatter.format(new Date(data.startDate))} to $
         }
       </tbody>
     </table>
+    <span
+      class="px-4 py-3
+    justify-end
+      text-right
+      font-bold
+      text-lg
+      text-gray-800
+      border-t
+      border-gray-200
+      bg-gray-100"
+      >Total all products: {totalFormatted}</span
+    >
   </main>
 </Layout>
 
