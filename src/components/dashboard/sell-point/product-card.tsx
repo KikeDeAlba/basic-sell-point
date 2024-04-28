@@ -38,8 +38,8 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
                 <h2 className="text-xl font-semibold">{name}</h2>
                 <span className="text-lg font-semibold">{formattedPrice}</span>
             </div>
-            <p className="text-sm text-white/80">{description}</p>
-            <p className="text-sm text-white/80">Stock: {stock}</p>
+            <p className="text-sm ">{description}</p>
+            <p className="text-sm ">Stock: {stock}</p>
             <div className="flex justify-between items-center mt-4">
                 <input
                     type="number"
