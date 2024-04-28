@@ -10,68 +10,105 @@ console.log(workers);
 ---
 
 <DashboardLayout title="Workers">
-    <main>
-        <header
-            class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
+  <main>
+    <header
+      class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
+    >
+      <div>
+        <h1 class="text-2xl font-semibold">Workers</h1>
+        <p>
+          Here you can see all the workers that are currently working on the
+          platform.
+        </p>
+      </div>
+
+      <div>
+        <a
+          href="/dashboard/workers/add"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
         >
-            <div>
-                <h1 class="text-2xl font-semibold">Workers</h1>
-                <p>
-                    Here you can see all the workers that are currently working
-                    on the platform.
-                </p>
-            </div>
+          Add Worker
+        </a>
+      </div>
+    </header>
 
-            <div>
-                <a
-                    href="/dashboard/workers/add"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
+    <section class="bg-white/30 p-4 rounded-md shadow-md">
+      <!--
+// v0 by Vercel.
+// https://v0.dev/t/7KTKtnsgQc0
+-->
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="text-2xl font-bold">User Inventory</h1>
+        </div>
+        <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+          <div class="relative w-full overflow-auto">
+            <table class="w-full caption-bottom text-sm">
+              <thead class="[&_tr]:border-b">
+                <tr
+                  class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
                 >
-                    Add Worker
-                </a>
-            </div>
-        </header>
-
-        <section class="bg-white/30 p-4 rounded-md shadow-md">
-            <table class="w-full table-auto border-collapse">
-                <thead>
-                    <tr>
-                        <th class="text-left">Name</th>
-                        <th class="text-left">Email</th>
-                        <th class="text-left">Role</th>
-                        <th class="text-left">Actions</th>
+                  <th
+                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+                  >
+                    Role
+                  </th>
+                  <th
+                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="[&_tr:last-child]:border-0">
+                {
+                  workers.map((worker) => (
+                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                      <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                        {worker.firstName}
+                      </td>
+                      <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                        {worker.email}
+                      </td>
+                      <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                        {worker.role}
+                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                          <div class="flex items-center space-x-2">
+                            <button
+                              class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 hover:shadow-md transition-colors duration-200 ease-in-out
+                            "
+                            >
+                              Edit
+                            </button>
+                            <button
+                              class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3
+                            bg-red-500 text-white hover:bg-red-600 hover:text-white rounded-md px-3 hover:shadow-md transition-colors duration-200 ease-in-out
+                            "
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <!-- Loop through all the workers -->
-                    {
-                        workers.map((worker) => (
-                            <tr>
-                                <td>{worker.firstName}</td>
-                                <td>{worker.email}</td>
-                                <td>{worker.role}</td>
-                                <td>
-                                    <div>
-                                        <a
-                                            href={`/dashboard/workers/${worker.id}/delete`}
-                                            class="text-red-500 hover:underline"
-                                        >
-                                            Delete
-                                        </a>
-
-                                        <a
-                                            href={`/dashboard/workers/${worker.id}/edit`}
-                                            class="text-blue-500 hover:underline ml-2"
-                                        >
-                                            Edit
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
+                  ))
+                }
+              </tbody>
             </table>
-        </section>
-    </main>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </DashboardLayout>

@@ -39,16 +39,17 @@ export const ShopCar = ({ clients }: Props) => {
                 </button>
             </div>
 
-            <div className={`transition-opacity duration-500 ${currentSection === 'ticket' ? 'opacity-100' : 'opacity-0'
-                }`}>
+            <div className={`transition-opacity duration-300 ${currentSection === 'ticket' ? 'opacity-100' : 'opacity-0'}`}>
                 {currentSection === 'ticket' && (
-                    <div className="flex-1 h-full flex flex-col justify-between gap-2">
+                    <div className="flex-1 h-full flex flex-col justify-between gap-2 ">
                         <ul className="flex flex-col gap-2 flex-1 overflow-y-auto">
                             {shopCarProducts.map((product) => (
                                 <TicketProduct key={product.id} {...product} />
                             ))}
                         </ul>
+
                         <form
+                            className="flex flex-col justify-between"
                             onSubmit={(e) => {
                                 e.preventDefault();
 
@@ -108,9 +109,10 @@ export const ShopCar = ({ clients }: Props) => {
                                     })
                             }}
                         >
+                            
                             <div className="flex w-full justify-between mb-2">
                                 <div className="flex flex-col gap-1">
-                                    <label className="flex w-fit items-center gap-2 text-sm">
+                                    <label className="flex w-fit items-center gap-2 text-sm ">
                                         <span
                                             className="text-black/50 "
                                         >Payment Method:</span>
@@ -168,8 +170,7 @@ export const ShopCar = ({ clients }: Props) => {
                 )}
             </div>
 
-            <div className={`transition-opacity duration-500 ${currentSection === 'client' ? 'opacity-100' : 'opacity-0'
-                }`}>
+            <div className={`transition-opacity duration-300 ${currentSection === 'client' ? 'opacity-100' : 'opacity-0'}`}>
                 {currentSection === 'client' && (
                     <div className="flex-1 h-full flex flex-col justify-between gap-2 animate-fadeIn">
                         <ul className="flex flex-col gap-2 flex-1 overflow-y-auto">
@@ -191,6 +192,7 @@ export const ShopCar = ({ clients }: Props) => {
                     </div>
                 )}
             </div>
+
         </section>
     )
 }
