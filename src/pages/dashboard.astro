@@ -8,8 +8,12 @@ import { eq, sql } from "drizzle-orm";
 const user = Astro.locals.user;
 
 async function totalClientsLen() {
-  const clientsLen = await db.select().from(clients);
-  return clientsLen.length;
+  const [clientsLen] = await db
+    .select({
+      counter: sql`COUNT(*)`,
+    })
+    .from(clients);
+  return clientsLen.counter;
 }
 
 const totalClients = await totalClientsLen();
