@@ -16,7 +16,7 @@ const { error } = Object.fromEntries(Astro.url.searchParams);
             </div>
         )
     }
-    <main>
+    <main transition:name="worker-box">
         <header
             class="flex justify-between items-center gap-4 mb-8 p-4 bg-white/30 rounded-md shadow-md"
         >

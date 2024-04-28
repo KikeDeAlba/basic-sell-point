@@ -15,7 +15,10 @@ const { error } = Object.fromEntries(Astro.url.searchParams);
             </div>
         )
     }
-    <main class="flex flex-col h-full overflow-hidden">
+    <main
+        transition:name="inventory-box"
+        class="flex flex-col h-full overflow-hidden"
+    >
         <header class="flex justify-between items-center mb-4">
             <h1 class="text-3xl font-bold" transition:name="inventory-title">
                 Inventario
