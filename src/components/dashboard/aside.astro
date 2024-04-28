@@ -7,24 +7,24 @@ const user = Astro.locals.user;
 
 <aside class="h-screen overflow-hidden border-r border-r-white/20 px-5 py-4">
   <h1 class="text-2xl font-bold text-black mb-4">
-    Hello {user.firstName}!
+    Hola {user.firstName}!
   </h1>
 
   <nav>
     <ul class="flex flex-col gap-1">
-      <LiElement href="/dashboard"> Home </LiElement>
-      <LiElement href="/dashboard/sell-point">Sell Point</LiElement>
+      <LiElement href="/dashboard"> Inicio </LiElement>
+      <LiElement href="/dashboard/sell-point">Punto de venta</LiElement>
 
       {
         user.role === "admin" && (
           <>
-            <LiElement href="/dashboard/inventory">Inventory</LiElement>
-            <LiElement href="/dashboard/workers">Workers</LiElement>
-            <LiElement href="/dashboard/reports">Reports</LiElement>
+            <LiElement href="/dashboard/inventory">Inventario</LiElement>
+            <LiElement href="/dashboard/workers">Trabajadores</LiElement>
+            <LiElement href="/dashboard/reports">Reportes</LiElement>
           </>
         )
       }
-      <LiElement href="/api/auth/logout">Logout</LiElement>
+      <LiElement href="/api/auth/logout">Cerrar sesion</LiElement>
     </ul>
   </nav>
 </aside>

@@ -4,11 +4,22 @@ interface Props {
 }
 
 const { href } = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+const classNames = {
+  selected: "text-white bg-black/80",
+  notSelected: "text-black/80 hover:text-white hover:bg-black/80",
+};
 ---
 
 <a
   href={href}
-  class="text-black/80 hover:text-white transition-all duration-200 ease-in-out py-2 px-4 rounded-md hover:bg-black/80"
+  class:list={[
+    { [classNames.selected]: pathname === href },
+    { [classNames.notSelected]: pathname !== href },
+  ]}
+  class="transition-all duration-200 ease-in-out py-2 px-4 rounded-md"
 >
   <li>
     <slot />
