@@ -7,7 +7,8 @@ export const ProductSchema = z.object({
     name: z.coerce.string(),
     description: z.coerce.string(),
     price: z.coerce.number(),
-    stock: z.coerce.number()
+    stock: z.coerce.number(),
+    discount: z.coerce.number()
 })
 
 export const POST = async ({ request, redirect }: APIContext) => {

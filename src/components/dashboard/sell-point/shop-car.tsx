@@ -14,7 +14,7 @@ export const ShopCar = ({ clients }: Props) => {
         client: state.client
     }));
 
-    const total = shopCarProducts.reduce((acc, { price, quantity }) => acc + price * quantity, 0);
+    const total = shopCarProducts.reduce((acc, { price, quantity, discount }) => acc + (price * quantity) - discount, 0);
 
     const [currentSection, setCurrentSection] = useState<'client' | 'ticket'>('ticket')
     const [cash, setCash] = useState(0)

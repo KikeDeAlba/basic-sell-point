@@ -43,7 +43,8 @@ export const products = mysqlTable('products', {
     stock: int('stock').notNull(),
     description: varchar('description', {
         length: 255
-    }).notNull()
+    }).notNull(),
+    discount: float('discount').notNull().default(0)
 })
 
 export const sales = mysqlTable('sales', {

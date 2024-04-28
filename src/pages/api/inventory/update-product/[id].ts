@@ -11,6 +11,8 @@ export const POST = async ({ params, request, redirect }: APIContext) => {
 
     const json = Object.fromEntries(data.entries())
 
+    console.log(json)
+
     const product = ProductSchema.parse(json)
 
     // Update the product with the given ID in the database

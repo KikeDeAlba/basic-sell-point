@@ -10,9 +10,10 @@ export const priceFormmater = new Intl.NumberFormat("es-MX", {
 });
 
 export const ProductCard = (product: typeof products.$inferSelect) => {
-    const { description, name, price, stock } = product;
+    const { description, name, price, stock, discount } = product;
 
     const formattedPrice = priceFormmater.format(price);
+    const formattedDiscount = priceFormmater.format(discount);
     const addProduct = useShopCarStore((state) => state.addProduct)
     const $quantityInput = useRef<HTMLInputElement>(null)
 
@@ -45,6 +46,7 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
             </div>
             <p className="text-sm ">{description}</p>
             <p className="text-sm ">Stock: {stock}</p>
+            <p className="text-sm ">Descuento: {formattedDiscount}</p>
             <div className="flex justify-between items-center mt-4">
                 <input
                     type="number"
