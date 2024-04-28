@@ -11,9 +11,23 @@ export const POST = async ({ params, request, redirect }: APIContext) => {
 
     const json = Object.fromEntries(data.entries())
 
-    console.log(json)
-
     const product = ProductSchema.parse(json)
+
+    if (product.price < product.discount) {
+        return redirect('/dashboard/inventory?error=The discount cannot be greater than the price')
+    }
+
+    if (product.stock < 0) {
+        return redirect('/dashboard/inventory?error=The stock cannot be negative')
+    }
+
+    if (product.discount < 0) {
+        return redirect('/dashboard/inventory?error=The discount cannot be negative')
+    }
+
+    if (product.price < 0) {
+        return redirect('/dashboard/inventory?error=The price cannot be negative')
+    }
 
     // Update the product with the given ID in the database
     await db.update(products).set(product).where(sql`id = ${id}`).execute()
