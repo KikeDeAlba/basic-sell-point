@@ -14,16 +14,12 @@ async function totalClientsLen() {
 
 const totalClients = await totalClientsLen();
 
-console.log(await totalClientsLen());
-
 async function totalUsersLen() {
   const usersLen = await db.select().from(users);
   return usersLen.length;
 }
 
 const totalUsers = await totalUsersLen();
-
-console.log(await totalUsersLen());
 
 async function currentSalesWhereUserID() {
   const currentSales = await db
@@ -38,8 +34,6 @@ const currentSales = await currentSalesWhereUserID();
 const totalSales = priceFormmater.format(
   currentSales.reduce((acc, sale) => acc + sale.total, 0),
 );
-
-console.log(totalSales);
 ---
 
 <DashboardLayout title="Dashboard">
