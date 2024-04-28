@@ -14,9 +14,6 @@ export const POST = async ({ request }: APIContext) => {
 
     const { startDate, endDate } = dates.parse(body);
 
-    console.log(startDate, endDate);
-    console.log(startDate.toISOString() === endDate.toISOString());
-
     // Fetch sales data within the specified date range
     const salesData =
         startDate.toISOString() === endDate.toISOString()

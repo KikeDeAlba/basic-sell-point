@@ -5,8 +5,6 @@ import { users } from "db/schema";
 import { eq, sql } from "drizzle-orm";
 
 const workers = await db.select().from(users).where(eq(users.role, "worker"));
-
-console.log(workers);
 ---
 
 <DashboardLayout title="Workers">
