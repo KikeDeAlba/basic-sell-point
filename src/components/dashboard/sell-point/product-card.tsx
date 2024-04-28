@@ -28,6 +28,11 @@ export const ProductCard = (product: typeof products.$inferSelect) => {
                     quantity: Number(data.get("quantity"))
                 };
 
+                if (newProduct.quantity > stock) {
+                    alert("No hay suficiente stock")
+                    return
+                }
+
                 addProduct(newProduct)
 
                 if ($quantityInput.current != null) $quantityInput.current.value = "1"
