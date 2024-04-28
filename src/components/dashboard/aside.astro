@@ -1,4 +1,5 @@
 ---
+import { LogoutButton } from "../logout-button";
 import LiElement from "./aside-utils/li-element.astro";
 
 // @ts-expect-error - Astro doesn't know about locals yet
@@ -25,34 +26,7 @@ const user = Astro.locals.user;
         )
       }
 
-      <button
-        id="logout-button"
-        class="transition-all text-left duration-200 ease-in-out py-2 px-4 rounded-md text-black/80 hover:text-white hover:bg-black/80"
-      >
-        Cerrar sesion
-      </button>
+      <LogoutButton client:load />
     </ul>
   </nav>
 </aside>
-
-<script>
-  const $buttons = document.querySelectorAll("#logout-button");
-
-  [...$buttons].forEach(($button) => {
-    if (!($button instanceof HTMLButtonElement)) return;
-
-    $button.onclick = () => {
-      console.log("logout");
-
-      fetch("/api/auth/logout")
-        .then((res) => {
-          if (res.ok) {
-            window.location.href = "/";
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    };
-  });
-</script>
