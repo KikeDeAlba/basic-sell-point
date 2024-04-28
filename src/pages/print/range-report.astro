@@ -69,6 +69,11 @@ const dateFormatter = new Intl.DateTimeFormat("es-MX", {
 });
 
 const title = `Sales from ${dateFormatter.format(new Date(data.startDate))} to ${dateFormatter.format(new Date(data.endDate))}`;
+
+const total = currentSalesWithProducts.reduce(
+    (acc, sale) => acc + sale.total,
+    0,
+);
 ---
 
 <Layout title={title}>
@@ -101,6 +106,16 @@ const title = `Sales from ${dateFormatter.format(new Date(data.startDate))} to $
                     )
                 }
             </tbody>
+
+            <tfoot>
+                <tr>
+                    <td class="p-2 font-bold">Total</td>
+                    <td class="p-2"></td>
+                    <td class="p-2"></td>
+                    <td class="p-2 font-bold">{priceFormmater.format(total)}</td
+                    >
+                </tr>
+            </tfoot>
         </table>
     </main>
 </Layout>
