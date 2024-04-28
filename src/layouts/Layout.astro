@@ -21,11 +21,11 @@ const { title } = Astro.props;
   </head>
   <body>
     <slot />
-  </body><style is:global>
-    :root {
-      color-scheme: light white;
-      background-color: white;
-      opacity: 0.9;
-    }
-  </style>
+    <style is:global>
+      :root {
+        color-scheme: light;
+        opacity: 0.9;
+      }
+    </style>
+  </body>
 </html>
