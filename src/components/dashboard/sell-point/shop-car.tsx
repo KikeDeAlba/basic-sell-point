@@ -140,13 +140,13 @@ export const ShopCar = ({ clients }: Props) => {
                             </div>
 
                             <div className="flex flex-col items-end justify-end">
-                                <span className="text-white/80">Total: {
+                                <span className="">Total: {
                                     priceFormmater.format(
                                         total
                                     )
                                 }</span>
 
-                                <span className="text-white/80">Change: {
+                                <span className="">Change: {
                                     priceFormmater.format(
                                         cash - total < 0 ? 0 : cash - total
                                     )
