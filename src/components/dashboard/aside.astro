@@ -26,6 +26,7 @@ const user = Astro.locals.user;
       }
 
       <button
+        id="logout-button"
         class="transition-all text-left duration-200 ease-in-out py-2 px-4 rounded-md text-black/80 hover:text-white hover:bg-black/80"
       >
         Cerrar sesion
@@ -35,9 +36,11 @@ const user = Astro.locals.user;
 </aside>
 
 <script>
-  const $button = document.querySelector("button");
+  const $buttons = document.querySelectorAll("#logout-button");
 
-  if ($button)
+  [...$buttons].forEach(($button) => {
+    if (!($button instanceof HTMLButtonElement)) return;
+
     $button.onclick = () => {
       console.log("logout");
 
@@ -51,4 +54,5 @@ const user = Astro.locals.user;
           console.error(err);
         });
     };
+  });
 </script>
