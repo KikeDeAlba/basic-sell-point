@@ -2,20 +2,20 @@
 import type { products } from "db/schema";
 
 interface Props {
-    defaultValues?: typeof products.$inferSelect;
+  defaultValues?: typeof products.$inferSelect;
 }
 
 const { defaultValues } = Astro.props;
 
 const title = defaultValues != null ? "Edit Product" : "Create New Product";
 const action =
-    defaultValues != null
-        ? `/api/inventory/update-product/${defaultValues.id}`
-        : "/api/inventory/create-product";
+  defaultValues != null
+    ? `/api/inventory/update-product/${defaultValues.id}`
+    : "/api/inventory/create-product";
 const paragraphValue =
-    defaultValues != null
-        ? "Update the form to edit the product."
-        : "Fill out the form to add a new product.";
+  defaultValues != null
+    ? "Update the form to edit the product."
+    : "Fill out the form to add a new product.";
 ---
 
 <!--
@@ -23,123 +23,124 @@ const paragraphValue =
 // https://v0.dev/t/6UrpFPSyvL2
 -->
 <style>
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: "Inter", sans-serif;
-        --font-sans: "Inter";
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", sans-serif;
+    --font-sans: "Inter";
+  }
 </style>
 <style>
-    body {
-        font-family: "Inter", sans-serif;
-        --font-sans: "Inter";
-    }
+  body {
+    font-family: "Inter", sans-serif;
+    --font-sans: "Inter";
+  }
 </style>
 <div
-    class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md"
-    data-v0-t="card"
+  class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md"
+  data-v0-t="card"
 >
-    <div class="flex flex-col space-y-1.5 p-6">
-        <h3
-            class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
+  <div class="flex flex-col space-y-1.5 p-6">
+    <h3
+      class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
+    >
+      {title}
+    </h3>
+    <p class="text-sm text-muted-foreground">
+      {paragraphValue}
+    </p>
+  </div>
+  <div class="p-6">
+    <form action={action} method="post" class="grid gap-4">
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="name"
         >
-            {title}
-        </h3>
-        <p class="text-sm text-muted-foreground">
-            {paragraphValue}
-        </p>
-    </div>
-    <div class="p-6">
-        <form action={action} method="post" class="grid gap-4">
-            <div class="grid gap-2">
-                <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    for="name"
-                >
-                    Product Name
-                </label>
-                <input
-                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    id="name"
-                    placeholder="Enter product name"
-                    name="name"
-                    value={defaultValues?.name}
-                />
-            </div>
-            <div class="grid gap-2">
-                <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    for="description"
-                >
-                    Description
-                </label>
-                <textarea
-                    class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    id="description"
-                    name="description"
-                    value={defaultValues?.description}
-                    placeholder="Enter product description"></textarea>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="grid gap-2">
-                    <label
-                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        for="quantity"
-                    >
-                        Stock Quantity
-                    </label>
-                    <input
-                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        id="quantity"
-                        placeholder="Enter stock quantity"
-                        type="number"
-                        name="stock"
-                        value={defaultValues?.stock}
-                    />
-                </div>
-                <div class="grid gap-2">
-                    <label
-                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        for="price"
-                    >
-                        Price
-                    </label>
-                    <input
-                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        id="price"
-                        placeholder="Enter price"
-                        type="number"
-                        name="price"
-                        value={defaultValues?.price}
-                    />
-                </div>
-            </div>
-            <div class="grid gap-2">
-                <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    for="discount"
-                >
-                    Discount
-                </label>
-                <input
-                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    id="discount"
-                    placeholder="Enter discount"
-                    type="number"
-                    name="discount"
-                    value={defaultValues?.discount ?? 0}
-                />
-            </div>
-            <button
-                class="bg-white/20 hover:bg-white/30 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-                type="submit"
-            >
-                Save Product
-            </button>
-        </form>
-    </div>
+          Product Name
+        </label>
+        <input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="name"
+          placeholder="Enter product name"
+          name="name"
+          value={defaultValues?.name}
+        />
+      </div>
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="description"
+        >
+          Description
+        </label>
+        <textarea
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="description"
+          name="description"
+          value={defaultValues?.description}
+          placeholder="Enter product description"></textarea>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="quantity"
+          >
+            Stock Quantity
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="quantity"
+            placeholder="Enter stock quantity"
+            type="number"
+            name="stock"
+            value={defaultValues?.stock}
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="price"
+          >
+            Price
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="price"
+            placeholder="Enter price"
+            type="number"
+            name="price"
+            value={defaultValues?.price}
+          />
+        </div>
+      </div>
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="discount"
+        >
+          Discount
+        </label>
+        <input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="discount"
+          placeholder="Enter discount"
+          type="number"
+          name="discount"
+          value={defaultValues?.discount ?? 0}
+        />
+      </div>
+      <button
+        <button
+        class="bg-black hover:bg-gray-800 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-white h-10 px-4 py-2 w-full"
+        type="submit"
+      >
+        Save Product
+      </button>
+    </form>
+  </div>
 </div>

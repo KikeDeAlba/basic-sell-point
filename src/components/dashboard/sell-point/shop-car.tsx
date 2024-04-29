@@ -114,7 +114,10 @@ export const ShopCar = ({ clients }: Props) => {
                                     >Metodo de pago:</span>
                                     <select
                                         name="paymentMethod"
-                                        className="w-full p-2 rounded-md"
+                                        className="w-full p-2 rounded-md
+                                        border-black border-2
+                                        
+                                        "
                                     >
                                         <option value="cash">Efectivo</option>
                                         <option value="credit_card">Tarjeta</option>
@@ -128,7 +131,7 @@ export const ShopCar = ({ clients }: Props) => {
                                         name="cash"
                                         type="number"
                                         placeholder="0"
-                                        className="w-full p-2 rounded-md"
+                                        className="w-full p-2 rounded-md border-gray-500 border-2"
                                         value={cash}
                                         onChange={(e) => setCash(Number(e.target.value))}
                                     />
