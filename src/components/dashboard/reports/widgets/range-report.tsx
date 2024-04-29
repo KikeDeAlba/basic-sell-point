@@ -50,6 +50,8 @@ export const RangeReport = () => {
                     className="border border-gray-300 rounded-md p-2"
                     value={dates.startDate.toISOString().split('T')[0]}
                     onChange={(e) => {
+                        if (new Date(e.target.value) > dates.endDate) return
+
                         setDates({
                             ...dates,
                             startDate: new Date(e.target.value)
@@ -64,6 +66,8 @@ export const RangeReport = () => {
                     className="border border-gray-300 rounded-md p-2"
                     value={dates.endDate.toISOString().split('T')[0]}
                     onChange={(e) => {
+                        if (new Date(e.target.value) < dates.startDate) return
+
                         setDates({
                             ...dates,
                             endDate: new Date(e.target.value)
