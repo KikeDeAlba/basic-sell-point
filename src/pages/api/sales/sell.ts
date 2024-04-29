@@ -46,7 +46,8 @@ export const POST = async ({ cookies, request }: APIContext) => {
         ItemSchema.array().parse(json.items).map(async item => {
             const [product] = await db.select({
                 price: products.price,
-                stock: products.stock
+                stock: products.stock,
+                discount: products.discount
             }).from(products).where(
                 eq(products.id, item.productId)
             )
@@ -54,7 +55,7 @@ export const POST = async ({ cookies, request }: APIContext) => {
             return {
                 ...item,
                 saleId: fieldPackage.insertId,
-                total: product.price * item.quantity,
+                total: (product.price * item.quantity) - (product.discount * item.quantity),
                 stock: product.stock
             }
         })
