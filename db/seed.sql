@@ -1,4 +1,4 @@
--- Active: 1713670017818@@127.0.0.1@3306@sell_point
+-- Active: 1696921476499@@127.0.0.1@3306@sell_point
 INSERT INTO
     users (
         first_name, last_name, email, token, age, role
