@@ -1,11 +1,11 @@
 ---
 import DashboardLayout from "@/layouts/dashboard-layout.astro";
 import AddProductForm from "@/components/dashboard/inventory/add-product-form.astro";
-import { products } from "db/schema";
+import type { products } from "db/schema";
 
 interface Props {
-    editMode?: boolean;
-    defaultValues?: typeof products.$inferSelect;
+	editMode?: boolean;
+	defaultValues?: typeof products.$inferSelect;
 }
 
 const { editMode = false, defaultValues } = Astro.props;
