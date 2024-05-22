@@ -2,7 +2,7 @@ import type { APIContext } from "astro";
 import { ProductSchema } from "../create-product";
 import { db } from "@/services/mysql";
 import { products } from "db/schema";
-import { sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
 export const POST = async ({ params, request, redirect }: APIContext) => {
     const { id } = params
@@ -30,7 +30,9 @@ export const POST = async ({ params, request, redirect }: APIContext) => {
     }
 
     // Update the product with the given ID in the database
-    await db.update(products).set(product).where(sql`id = ${id}`).execute()
+    await db.update(products).set(product).where(
+        eq(products.id, Number(id))
+    ).execute()
 
     return redirect('/dashboard/inventory')
 }
