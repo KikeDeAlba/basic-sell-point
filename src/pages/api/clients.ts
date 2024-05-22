@@ -3,7 +3,7 @@ import type { APIContext } from "astro";
 import { z } from "astro/zod";
 import { clients } from "db/schema";
 
-const client = z.object({
+export const client = z.object({
     name: z.string(),
     email: z.string().email().optional()
 })

@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, datetime, float, varchar, binary } from 'drizzle-orm/mysql-core';
+import { int, mysqlEnum, mysqlTable, datetime, float, varchar } from 'drizzle-orm/mysql-core';
 import { sql } from 'drizzle-orm';
 
 export const users = mysqlTable('users', {
@@ -32,6 +32,7 @@ export const clients = mysqlTable('clients', {
     email: varchar('email', {
         length: 255
     }).unique(),
+    status: mysqlEnum('status', ['active', 'inactive']).notNull().default('active')
 })
 
 export const products = mysqlTable('products', {
