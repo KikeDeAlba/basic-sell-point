@@ -13,10 +13,10 @@ importers:
         version: 0.5.10(typescript@5.4.5)
       '@astrojs/react':
         specifier: ^3.3.1
-        version: 3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0)(react@18.3.0)(vite@5.2.10)
+        version: 3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(vite@5.2.10(@types/node@20.12.7))
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.6.3)(tailwindcss@3.4.3)
+        version: 5.1.0(astro@4.6.3(@types/node@20.12.7)(typescript@5.4.5))(tailwindcss@3.4.3)
       '@midudev/tailwind-animations':
         specifier: 0.0.7
         version: 0.0.7(tailwindcss@3.4.3)
@@ -28,7 +28,7 @@ importers:
         version: 18.3.0
       astro:
         specifier: ^4.6.3
-        version: 4.6.3(typescript@5.4.5)
+        version: 4.6.3(@types/node@20.12.7)(typescript@5.4.5)
       bcrypt:
         specifier: 5.1.1
         version: 5.1.1
@@ -43,7 +43,7 @@ importers:
         version: 0.30.9(@types/react@18.3.0)(mysql2@3.9.7)(react@18.3.0)
       framer-motion:
         specifier: 11.1.7
-        version: 11.1.7(react-dom@18.3.0)(react@18.3.0)
+        version: 11.1.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       mysql2:
         specifier: ^3.9.7
         version: 3.9.7
@@ -53,6 +53,9 @@ importers:
       react-dom:
         specifier: ^18.3.0
         version: 18.3.0(react@18.3.0)
+      signalify-store:
+        specifier: 1.0.7-experimental
+        version: 1.0.7-experimental(preact@10.22.0)
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
@@ -778,6 +781,14 @@ packages:
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@preact/signals-core@1.6.0':
+    resolution: {integrity: sha512-O/XGxwP85h1F7+ouqTMOIZ3+V1whfaV9ToIVcuyGriD4JkSD00cQo54BKdqjvBJxbenvp7ynfqRHEwI6e+NIhw==}
+
+  '@preact/signals@1.2.3':
+    resolution: {integrity: sha512-M2DXse3Wi8HwjI1d2vQWOLJ3lHogvqTsJYvl4ofXRXgMFQzJ7kmlZvlt5i8x5S5VwgZu0ghru4HkLqOoFfU2JQ==}
+    peerDependencies:
+      preact: 10.x
 
   '@rollup/rollup-android-arm-eabi@4.16.3':
     resolution: {integrity: sha512-1ACInKIT0pXmTYuPoJAL8sOT0lV3PEACFSVxnD03hGIojJ1CmbzZmLJyk2xew+yxqTlmx7xydkiJcBzdp0V+AQ==}
@@ -2587,6 +2598,9 @@ packages:
     resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
     engines: {node: ^10 || ^12 || >=14}
 
+  preact@10.22.0:
+    resolution: {integrity: sha512-RRurnSjJPj4rp5K6XoP45Ui33ncb7e4H7WiOHVpjbkvqvA3U+N8Z6Qbo0AE6leGYBV66n8EhEaFixvIu3SkxFw==}
+
   prebuild-install@7.1.2:
     resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
     engines: {node: '>=10'}
@@ -2779,6 +2793,9 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+
+  signalify-store@1.0.7-experimental:
+    resolution: {integrity: sha512-g1POjkkWVu3gaq3YFsU0sRzyuKi9Kr/Dwp5e/tex+AtRccDv6mk42ZqL/TlGmD28VrDpJeR/tSyEyxe05gCJiQ==}
 
   simple-concat@1.0.1:
     resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
@@ -3399,11 +3416,11 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0)(react@18.3.0)(vite@5.2.10)':
+  '@astrojs/react@3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(vite@5.2.10(@types/node@20.12.7))':
     dependencies:
       '@types/react': 18.3.0
       '@types/react-dom': 18.3.0
-      '@vitejs/plugin-react': 4.2.1(vite@5.2.10)
+      '@vitejs/plugin-react': 4.2.1(vite@5.2.10(@types/node@20.12.7))
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       ultrahtml: 1.5.3
@@ -3411,9 +3428,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.0(astro@4.6.3)(tailwindcss@3.4.3)':
+  '@astrojs/tailwind@5.1.0(astro@4.6.3(@types/node@20.12.7)(typescript@5.4.5))(tailwindcss@3.4.3)':
     dependencies:
-      astro: 4.6.3(typescript@5.4.5)
+      astro: 4.6.3(@types/node@20.12.7)(typescript@5.4.5)
       autoprefixer: 10.4.19(postcss@8.4.38)
       postcss: 8.4.38
       postcss-load-config: 4.0.2(postcss@8.4.38)
@@ -3919,6 +3936,13 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
+  '@preact/signals-core@1.6.0': {}
+
+  '@preact/signals@1.2.3(preact@10.22.0)':
+    dependencies:
+      '@preact/signals-core': 1.6.0
+      preact: 10.22.0
+
   '@rollup/rollup-android-arm-eabi@4.16.3':
     optional: true
 
@@ -4043,6 +4067,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 7.7.1
       debug: 4.3.4
       eslint: 9.1.1
+    optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -4070,6 +4095,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.6.0
       tsutils: 3.21.0(typescript@5.4.5)
+    optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -4084,6 +4110,7 @@ snapshots:
       minimatch: 9.0.4
       semver: 7.6.0
       ts-api-utils: 1.3.0(typescript@5.4.5)
+    optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -4100,14 +4127,14 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.10)':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7))':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.4)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.1
-      vite: 5.2.10
+      vite: 5.2.10(@types/node@20.12.7)
     transitivePeerDependencies:
       - supports-color
 
@@ -4258,7 +4285,7 @@ snapshots:
       - supports-color
       - typescript
 
-  astro@4.6.3(typescript@5.4.5):
+  astro@4.6.3(@types/node@20.12.7)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.7.1
       '@astrojs/internal-helpers': 0.4.0
@@ -4317,8 +4344,8 @@ snapshots:
       tsconfck: 3.0.3(typescript@5.4.5)
       unist-util-visit: 5.0.0
       vfile: 6.0.1
-      vite: 5.2.10
-      vitefu: 0.2.5(vite@5.2.10)
+      vite: 5.2.10(@types/node@20.12.7)
+      vitefu: 0.2.5(vite@5.2.10(@types/node@20.12.7))
       which-pm: 2.1.1
       yargs-parser: 21.1.1
       zod: 3.23.3
@@ -4667,7 +4694,7 @@ snapshots:
       - supports-color
 
   drizzle-orm@0.30.9(@types/react@18.3.0)(mysql2@3.9.7)(react@18.3.0):
-    dependencies:
+    optionalDependencies:
       '@types/react': 18.3.0
       mysql2: 3.9.7
       react: 18.3.0
@@ -5014,11 +5041,12 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@11.1.7(react-dom@18.3.0)(react@18.3.0):
+  framer-motion@11.1.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
+      tslib: 2.6.2
+    optionalDependencies:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
-      tslib: 2.6.2
 
   fs-constants@1.0.0:
     optional: true
@@ -6025,8 +6053,9 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.4.38):
     dependencies:
       lilconfig: 3.1.1
-      postcss: 8.4.38
       yaml: 2.4.1
+    optionalDependencies:
+      postcss: 8.4.38
 
   postcss-nested@6.0.1(postcss@8.4.38):
     dependencies:
@@ -6045,6 +6074,8 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.2.0
+
+  preact@10.22.0: {}
 
   prebuild-install@7.1.2:
     dependencies:
@@ -6319,6 +6350,12 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
+  signalify-store@1.0.7-experimental(preact@10.22.0):
+    dependencies:
+      '@preact/signals': 1.2.3(preact@10.22.0)
+    transitivePeerDependencies:
+      - preact
+
   simple-concat@1.0.1:
     optional: true
 
@@ -6549,7 +6586,7 @@ snapshots:
   ts-interface-checker@0.1.13: {}
 
   tsconfck@3.0.3(typescript@5.4.5):
-    dependencies:
+    optionalDependencies:
       typescript: 5.4.5
 
   tslib@1.14.1: {}
@@ -6717,55 +6754,61 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite@5.2.10:
+  vite@5.2.10(@types/node@20.12.7):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.16.3
     optionalDependencies:
+      '@types/node': 20.12.7
       fsevents: 2.3.3
 
-  vitefu@0.2.5(vite@5.2.10):
-    dependencies:
-      vite: 5.2.10
+  vitefu@0.2.5(vite@5.2.10(@types/node@20.12.7)):
+    optionalDependencies:
+      vite: 5.2.10(@types/node@20.12.7)
 
   volar-service-css@0.0.34(@volar/language-service@2.1.6):
     dependencies:
-      '@volar/language-service': 2.1.6
       vscode-css-languageservice: 6.2.14
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
+    optionalDependencies:
+      '@volar/language-service': 2.1.6
 
   volar-service-emmet@0.0.34(@volar/language-service@2.1.6):
     dependencies:
-      '@volar/language-service': 2.1.6
       '@vscode/emmet-helper': 2.9.3
       vscode-html-languageservice: 5.2.0
+    optionalDependencies:
+      '@volar/language-service': 2.1.6
 
   volar-service-html@0.0.34(@volar/language-service@2.1.6):
     dependencies:
-      '@volar/language-service': 2.1.6
       vscode-html-languageservice: 5.2.0
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
+    optionalDependencies:
+      '@volar/language-service': 2.1.6
 
   volar-service-prettier@0.0.34(@volar/language-service@2.1.6):
     dependencies:
-      '@volar/language-service': 2.1.6
       vscode-uri: 3.0.8
+    optionalDependencies:
+      '@volar/language-service': 2.1.6
 
   volar-service-typescript-twoslash-queries@0.0.34(@volar/language-service@2.1.6):
-    dependencies:
+    optionalDependencies:
       '@volar/language-service': 2.1.6
 
   volar-service-typescript@0.0.34(@volar/language-service@2.1.6):
     dependencies:
-      '@volar/language-service': 2.1.6
       path-browserify: 1.0.1
       semver: 7.6.0
       typescript-auto-import-cache: 0.3.2
       vscode-languageserver-textdocument: 1.0.11
       vscode-nls: 5.2.0
+    optionalDependencies:
+      '@volar/language-service': 2.1.6
 
   vscode-css-languageservice@6.2.14:
     dependencies:
@@ -6883,8 +6926,9 @@ snapshots:
 
   zustand@4.5.2(@types/react@18.3.0)(react@18.3.0):
     dependencies:
+      use-sync-external-store: 1.2.0(react@18.3.0)
+    optionalDependencies:
       '@types/react': 18.3.0
       react: 18.3.0
-      use-sync-external-store: 1.2.0(react@18.3.0)
 
   zwitch@2.0.4: {}
